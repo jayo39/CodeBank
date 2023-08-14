@@ -1,0 +1,99 @@
+body {
+    background: linear-gradient(-45deg, #6f1451, #BD1E86);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#main-wrap {
+    margin: 150px 250px 0px 250px;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 70px;
+    color: #fff;
+}
+
+#short-desc {
+    font-family: 'Source Code Pro', monospace;
+    color: #fff;
+    margin-top: 10px;
+}
+
+#main-box {
+    display: flex;
+    align-items: flex-start;
+}
+
+.fun-desc {
+    font-family: 'Source Code Pro', monospace;
+    color: #fff;
+}
+
+.fun-icon {
+    margin-left: 7px;
+    font-size: 20px;
+}
+
+.input-group {
+    margin-top: 30px;
+    width: 360px;
+}
+
+#logoicon {
+    color: #fff;
+    font-size: 400px;
+    margin: -45px 0px 0 70px;
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;
+}
+
+#main-sub-container {
+    display: flex;
+    align-items: center;
+}
+
+#sub-wrap {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff;
+    margin-top: 160px;
+}
+
+.btn-warning {
+    border-radius: 0 5px 5px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+#registerBtn {
+    display: flex;
+    justify-content: center;
+}
