@@ -22,15 +22,18 @@ header {
 
 #login {
     font-family: 'Source Code Pro', monospace;
-    color: #fff;
     margin: 13px 20px 0 0;
     font-size: 20px;
-    cursor: pointer;
-    transition: color 0.3s;
 }
 
-#login:hover {
+#login a:hover {
     color: #43aa8c;
+}
+
+#login a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
 .nav-bg {

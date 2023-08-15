@@ -1,8 +1,7 @@
 body {
-    background: linear-gradient(-45deg, #6f1451, #BD1E86);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(-45deg, #6f1451, #BD1E86);
+  height: 100vh;
+  margin: 0;
 }
 
 #top-title {
@@ -26,7 +25,7 @@ h2 {
 }
 
 #addBtn {
-    margin-right: 50px;
+    margin: 15px 50px 0 0;
 }
 
 hr {

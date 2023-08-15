@@ -1,0 +1,54 @@
+body {
+  background: linear-gradient(-45deg, #6f1451, #BD1E86);  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 450px;
+}
+
+.login-container h2 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 250px;
+}
+
+.login-button {
+  width: 250px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+#password {
+    margin-bottom: 20px;
+}
