@@ -1,0 +1,34 @@
+body {
+    background: linear-gradient(-45deg, #6f1451, #BD1E86);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#top-title {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+.title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 35px;
+    color: #fff;
+    margin-left: 50px;
+}
+
+h2 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 50px;
+}
+
+#addBtn {
+    margin-right: 50px;
+}
+
+hr {
+    color: #fff;
+}

@@ -22,9 +22,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/add")
-    public void add(){;}
-
     @PostMapping("/register")
     @ResponseBody
     public ResponseEntity<String> registerOk(@Valid User user, BindingResult result) {

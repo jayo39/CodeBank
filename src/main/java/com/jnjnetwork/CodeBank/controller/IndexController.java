@@ -17,4 +17,9 @@ public class IndexController {
         model.addAttribute("userTotal", userService.countUserTotal());
         return "/index.html";
     }
+
+    @GetMapping("/list")
+    public void list(Model model) {
+        // TODO
+    }
 }

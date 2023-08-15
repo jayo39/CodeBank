@@ -22,4 +22,6 @@ public class Snippet extends CreatedTimeEntity {
     private String language;
     @Column(nullable = false)
     private String code;
+    private String img;
+    private Boolean isPublic;
 }
