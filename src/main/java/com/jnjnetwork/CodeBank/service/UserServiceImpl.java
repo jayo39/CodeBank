@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -55,5 +57,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public long countUserTotal() {
         return userRepository.count();
+    }
+
+    @Override
+    public List<Role> selectRolesById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
+        return user.getRoles();
     }
 }
