@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="footer">
     <header>
         <div>
@@ -16,7 +16,8 @@
                     more_horiz
                 </span>
                 <div id="login">
-                    <a th:href="@{/user/login}">Login</a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+                    <span sec:authorize="isAuthenticated()">Welcome, <a th:with="user=${#authentication.principal.user}" th:href="@{user/profile}" th:text="${user.name}"></a></span>
                 </div>
             </nav>
         </div>
