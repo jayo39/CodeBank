@@ -33,8 +33,7 @@ $(function() {
             data: data,
             cache: false,
             success: function(data, status, xhr) {
-                // TODO change this url to something else
-                location.href = "/user/add";
+                location.href = "/user/login";
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 400) {

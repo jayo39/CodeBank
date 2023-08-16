@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
@@ -9,14 +9,14 @@
 <body>
 <div class="login-container">
     <h2>CodeBank</h2>
-    <form>
+    <form th:action="@{/user/login}" method="POST">
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            <label for="username">Email</label>
+            <input type="email" class="form-control" id="username" name="username" placeholder="Enter your email">
         </div>
         <div id="password" class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Enter your password">
         </div>
         <div id="button-container">
             <div>

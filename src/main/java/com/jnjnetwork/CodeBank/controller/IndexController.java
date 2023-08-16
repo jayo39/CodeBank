@@ -22,6 +22,6 @@ public class IndexController {
 
     @GetMapping("/list")
     public void list(Model model) {
-        model.addAttribute("snippets", snippetService.findAll());
+        model.addAttribute("snippets", snippetService.findPublic());
     }
 }

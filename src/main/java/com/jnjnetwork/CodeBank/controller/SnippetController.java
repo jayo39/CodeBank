@@ -26,7 +26,12 @@ public class SnippetController {
     public void add() {;}
 
     @PostMapping("/add")
-    public String addOk(@RequestParam("upfile") MultipartFile file, @Valid Snippet snippet, BindingResult result, RedirectAttributes reAttr, Model model) {
+    public String addOk(@RequestParam("upfile") MultipartFile file
+            , @RequestParam(value = "isEnabled", required = false) String isEnabled
+            , @Valid Snippet snippet
+            , BindingResult result
+            , RedirectAttributes reAttr
+            , Model model) {
         if (result.hasErrors()) {
             reAttr.addFlashAttribute("title", snippet.getTitle());
             reAttr.addFlashAttribute("language", snippet.getLanguage());
@@ -40,6 +45,10 @@ public class SnippetController {
             }
             return "redirect:/snippet/add";
         }
+        if (snippet.getTitle() == null || snippet.getTitle().length() == 0) {
+            snippet.setTitle("Untitled");
+        }
+        snippet.setIsPublic("on".equals(isEnabled));
         int saveResult = snippetService.save(snippet, file);
         return "/list";
     }

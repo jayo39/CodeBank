@@ -1,6 +1,7 @@
 package com.jnjnetwork.CodeBank.repository;
 
 import com.jnjnetwork.CodeBank.domain.Role;
+import com.jnjnetwork.CodeBank.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,16 @@ class UserRepositoryTest {
                 .build();
         roleRepository.saveAndFlush(role_member);
         roleRepository.saveAndFlush(role_admin);
+
+        // Make 1 user
+        User user = User.builder()
+                .name("Jay")
+                .email("sjeaho@gmail.com")
+                .password("1111")
+                .build();
+        user.addRole(role_member);
+        userRepository.saveAndFlush(user);
+        userRepository.findAll().forEach(System.out::println);
     }
 
 }

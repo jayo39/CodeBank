@@ -22,6 +22,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PostMapping("/loginError")
+    public String loginError() {
+        return "user/login";
+    }
+
+    @RequestMapping("/rejectAuth")
+    public void rejectAuth() {;}
+
     @GetMapping("/login")
     public void login() {;}
 

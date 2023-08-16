@@ -13,7 +13,6 @@ public class SnippetValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Snippet snippet = (Snippet) target;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "noTitle");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "language", "noLanguage");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "code", "noCode");
     }

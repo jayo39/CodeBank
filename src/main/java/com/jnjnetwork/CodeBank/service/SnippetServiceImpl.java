@@ -37,6 +37,11 @@ public class SnippetServiceImpl implements SnippetService{
         return snippetRepository.findAll();
     }
 
+    @Override
+    public List<Snippet> findPublic() {
+        return snippetRepository.findByIsPublic(true);
+    }
+
     private int upload(Snippet snippet, MultipartFile file) {
         String originalFileName = file.getOriginalFilename();
         if(originalFileName == null || originalFileName.length() == 0) {
@@ -48,6 +53,7 @@ public class SnippetServiceImpl implements SnippetService{
                 return 0;
             }
         }
+
         String sourceName = StringUtils.cleanPath(originalFileName);
         String fileName = sourceName;
         File file1 = new File(uploadDir + File.separator + sourceName);

@@ -2,6 +2,7 @@ package com.jnjnetwork.CodeBank.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +15,7 @@ public class Snippet extends CreatedTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ColumnDefault(value = "0")
     private Long likes;
     @Column(nullable = false)
     private String title;
