@@ -1,5 +1,8 @@
 $(function() {
-
+    if (localStorage.getItem('registrationSuccess') === 'true') {
+        $("#register-success").show();
+        localStorage.removeItem('registrationSuccess');
+    }
     $('#register').click(function() {
         const email = $("input[name='email']").val().trim();
         const name = $("input[name='name']").val().trim();
@@ -33,6 +36,7 @@ $(function() {
             data: data,
             cache: false,
             success: function(data, status, xhr) {
+                localStorage.setItem('registrationSuccess', 'true');
                 location.href = "/user/login";
             },
             error: function(xhr, status, error) {

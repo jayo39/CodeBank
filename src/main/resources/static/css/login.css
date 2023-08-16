@@ -1,9 +1,14 @@
 body {
-  background: linear-gradient(-45deg, #6f1451, #BD1E86);  display: flex;
+  background: linear-gradient(-45deg, #6f1451, #BD1E86);
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+}
+
+#register-modal {
+  cursor: pointer;
 }
 
 .login-container {
@@ -19,6 +24,10 @@ body {
   font-weight: bolder;
   text-align: center;
   margin-top: 30px;
+}
+
+#register-success {
+  display: none;
 }
 
 .form-group {
