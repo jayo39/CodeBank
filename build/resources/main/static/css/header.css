@@ -26,6 +26,10 @@ header {
     font-size: 20px;
 }
 
+#login span {
+    color: #fff;
+}
+
 #login a:hover {
     color: #43aa8c;
 }

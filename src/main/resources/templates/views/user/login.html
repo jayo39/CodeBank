@@ -45,18 +45,18 @@
         Created account!
     </div>
     <h2>CodeBank</h2>
-    <form th:action="@{/user/login}" method="POST">
+    <form id="loginForm" th:action="@{/user/login}" method="POST">
         <div class="form-group">
             <label for="username">Email</label>
             <input type="email" class="form-control" id="username" name="username" placeholder="Enter your email">
         </div>
-        <div id="password" class="form-group">
+        <div id="passwordForm" class="form-group">
             <label for="passwordInput">Password</label>
             <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Enter your password">
         </div>
         <div id="button-container">
             <div>
-                <button type="submit" class="btn btn-dark login-button">Login</button>
+                <button type="button" id="login" class="btn btn-dark login-button">Login</button>
             </div>
             <div>
                 <button class="btn btn-outline-dark login-button">Forgot password?</button>
@@ -72,4 +72,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="/js/registerModal.js"></script>
 <script src="/js/registerUser.js"></script>
+<script src="/js/login.js"></script>
 </html>

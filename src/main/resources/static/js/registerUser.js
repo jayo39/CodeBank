@@ -14,13 +14,13 @@ $(function() {
             return;
         } else if (!name) {
             $("#name").focus();
-            return
+            return;
         } else if (!password) {
             $("#password").focus();
-            return
+            return;
         } else if (!password_confirm) {
             $("#password-confirm").focus();
-            return
+            return;
        }
 
         const data = {
