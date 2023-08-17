@@ -21,7 +21,7 @@ spring:
     properties:
       hibernate.format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
 app:
   pagination:
