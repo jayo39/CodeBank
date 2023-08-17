@@ -31,7 +31,7 @@
                         expand_circle_up
                         <input type="hidden" class="snippet-id" th:value="${snippet.id}">
                     </span>
-                    <div th:id="'likeCount_' + ${snippet.id}" class="likeCount" th:text="${(snippet.likeCount == 0 || snippet.likeCount == null) ? 0 : snippet.likeCount}"></div>
+                    <div th:id="'likeCount_' + ${snippet.id}" class="likeCount" th:text="${snippet.likeCount}"></div>
                 </div>
                 <div class="snippet-title" th:text="${snippet.title}"></div>
                 <div class="snippet-description" th:text="${snippet.description}"></div>
