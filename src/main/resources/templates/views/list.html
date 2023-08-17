@@ -14,10 +14,20 @@
 </head>
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
-<div id="top-title">
-    <div class="title">Get Inspired</div>
-    <a id="addBtn" class="btn" href="/snippet/add">Add Snippet</a>
-</div>
+<form>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col d-flex input-group">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
+<!--<div id="top-title">-->
+<!--    <div class="title">Get Inspired</div>-->
+<!--    <a id="addBtn" class="btn" href="/snippet/add">Add Snippet</a>-->
+<!--</div>-->
 <h2>Popular Snippets</h2>
 <div class="container">
     <div class="row">
