@@ -2,10 +2,14 @@ package com.jnjnetwork.CodeBank.controller;
 
 import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.domain.SnippetValidator;
+import com.jnjnetwork.CodeBank.domain.User;
 import com.jnjnetwork.CodeBank.service.SnippetService;
+import com.jnjnetwork.CodeBank.service.UpvoteService;
+import com.jnjnetwork.CodeBank.util.U;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -14,13 +18,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/snippet")
 public class SnippetController {
     @Autowired
     SnippetService snippetService;
+    @Autowired
+    UpvoteService upvoteService;
 
     @GetMapping("/add")
     public void add() {;}
@@ -51,6 +59,22 @@ public class SnippetController {
         snippet.setIsPublic("on".equals(isEnabled));
         int saveResult = snippetService.save(snippet, file);
         return "redirect:/list";
+    }
+
+    @PostMapping("/upvote")
+    @Transactional
+    @ResponseBody
+    public Map<String, Boolean> upvoteOk(@RequestParam("snippet_id") Long snippet_id) {
+        User user = U.getLoggedUser();
+        Map<String, Boolean> response = new HashMap<>();
+        if (upvoteService.isExist(user.getId(), snippet_id)) {
+            upvoteService.removeUpvote(user.getId(), snippet_id);
+            response.put("isUpvote", false);
+        } else {
+            upvoteService.addUpvote(user, snippet_id);
+            response.put("isUpvote", true);
+        }
+        return response;
     }
 
     @InitBinder

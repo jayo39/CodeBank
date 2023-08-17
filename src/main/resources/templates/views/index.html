@@ -48,49 +48,51 @@
         <button id="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 </div>
-<div id="main-wrap">
-    <div id="main-container">
-        <div id="main-sub-container">
-            <div>
-                <div id="main-box">
-                    <h1>CodeBank</h1>
-                </div>
-                <div id="short-desc">
-                    <div>Tired of sifting through old code for reference?</div>
-                    <div>Say goodbye to the hassle of digging through old projects.</div>
-                </div>
-                <div class="input-group mb-3">
-                    <input id="signup" type="text" class="form-control" placeholder="Enter your email address" aria-label="Enter your email address" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-warning" type="button" onclick="openModal()">Sign Up</button>
+<div class="full-height">
+    <div id="main-wrap">
+        <div id="main-container">
+            <div id="main-sub-container">
+                <div>
+                    <div id="main-box">
+                        <h1>CodeBank</h1>
+                    </div>
+                    <div id="short-desc">
+                        <div>Tired of sifting through old code for reference?</div>
+                        <div>Say goodbye to the hassle of digging through old projects.</div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input id="signup" type="text" class="form-control" placeholder="Enter your email address" aria-label="Enter your email address" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-warning" type="button" onclick="openModal()">Sign Up</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="logo">
+                <div id="logo">
                     <span id="logoicon" class="material-symbols-outlined">
                         folder_data
                     </span>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="sub-wrap">
-    <div>
-        <h3>Free Resources<span class="material-symbols-outlined fun-icon">public</span></h3>
-        <div class="fun-desc">
-            <p># Free Code Snippets</p>
+    <div id="sub-wrap">
+        <div>
+            <h3>Free Resources<span class="material-symbols-outlined fun-icon">public</span></h3>
+            <div class="fun-desc">
+                <p># Free Code Snippets</p>
+            </div>
         </div>
-    </div>
-    <div>
-        <h3>TODOs<span class="material-symbols-outlined fun-icon">checklist</span></h3>
-        <div class="fun-desc">
-            <p>Reminding # of TODOs</p>
+        <div>
+            <h3>TODOs<span class="material-symbols-outlined fun-icon">checklist</span></h3>
+            <div class="fun-desc">
+                <p>Reminding # of TODOs</p>
+            </div>
         </div>
-    </div>
-    <div>
-        <h3>Community<span class="material-symbols-outlined fun-icon">sentiment_satisfied</span></h3>
-        <div class="fun-desc">
-            <p><span th:text="${userTotal}"></span> Happy Developers</p>
+        <div>
+            <h3>Community<span class="material-symbols-outlined fun-icon">sentiment_satisfied</span></h3>
+            <div class="fun-desc">
+                <p><span th:text="${userTotal}"></span> Happy Developers</p>
+            </div>
         </div>
     </div>
 </div>

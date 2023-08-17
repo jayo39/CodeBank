@@ -65,6 +65,18 @@ hr {
 }
 
 .expand-circle-up {
-    color: #43aa8c;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.liked {
+    color: #FFA500;
+}
+
+.not-liked {
+    color: #A0A0A0;
+}
+
+.badge {
+    background-color: #FF8C00;
 }

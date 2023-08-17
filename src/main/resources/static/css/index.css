@@ -1,6 +1,10 @@
 body {
+    margin: 0;
     background: linear-gradient(-45deg, #6f1451, #BD1E86);
-    min-height: 100vh;
+    width: 100%;
+}
+
+.full-height {
     margin: 0;
     padding: 0;
 }

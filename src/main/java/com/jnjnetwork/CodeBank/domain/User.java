@@ -12,8 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @Entity
 public class User extends CreatedTimeEntity{
     @Id
