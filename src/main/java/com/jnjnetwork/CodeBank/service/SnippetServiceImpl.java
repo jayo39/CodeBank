@@ -29,6 +29,11 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
+    public void save(Snippet snippet) {
+        snippetRepository.save(snippet);
+    }
+
+    @Override
     public int save(Snippet snippet, MultipartFile file) {
         return upload(snippet, file);
     }
@@ -41,6 +46,11 @@ public class SnippetServiceImpl implements SnippetService{
     @Override
     public List<Snippet> findPublic() {
         return snippetRepository.findByIsPublic(true, Sort.by(Sort.Order.desc("regDate")));
+    }
+
+    @Override
+    public Snippet findById(Long id) {
+        return snippetRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
     private int upload(Snippet snippet, MultipartFile file) {

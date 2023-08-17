@@ -64,16 +64,22 @@ public class SnippetController {
     @PostMapping("/upvote")
     @Transactional
     @ResponseBody
-    public Map<String, Boolean> upvoteOk(@RequestParam("snippet_id") Long snippet_id) {
+    public Map<String, Object> upvoteOk(@RequestParam("snippet_id") Long snippet_id) {
         User user = U.getLoggedUser();
-        Map<String, Boolean> response = new HashMap<>();
+        Snippet snippet = snippetService.findById(snippet_id);
+        Map<String, Object> response = new HashMap<>();
         if (upvoteService.isExist(user.getId(), snippet_id)) {
             upvoteService.removeUpvote(user.getId(), snippet_id);
+            snippet.setLikeCount(snippet.getLikeCount() - 1);
+            snippetService.save(snippet);
             response.put("isUpvote", false);
         } else {
             upvoteService.addUpvote(user, snippet_id);
+            snippet.setLikeCount(snippet.getLikeCount() + 1);
+            snippetService.save(snippet);
             response.put("isUpvote", true);
         }
+        response.put("likeCount", snippet.getLikeCount());
         return response;
     }
 

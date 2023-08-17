@@ -85,3 +85,9 @@ hr {
 .container {
   margin-bottom: 50px;
 }
+
+.likeCount {
+  font-size: 14px;
+  margin-top: -5px;
+  transition: color 0.3s;
+}

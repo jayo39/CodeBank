@@ -1,6 +1,7 @@
 package com.jnjnetwork.CodeBank.service;
 
 import com.jnjnetwork.CodeBank.domain.Role;
+import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.domain.User;
 
 import java.util.List;

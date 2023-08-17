@@ -1,5 +1,6 @@
 package com.jnjnetwork.CodeBank.repository;
 
+import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.domain.Upvote;
 import com.jnjnetwork.CodeBank.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

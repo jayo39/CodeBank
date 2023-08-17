@@ -1,5 +1,6 @@
 package com.jnjnetwork.CodeBank.service;
 
+import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.domain.Upvote;
 import com.jnjnetwork.CodeBank.domain.User;
 import com.jnjnetwork.CodeBank.repository.SnippetRepository;
@@ -48,6 +49,4 @@ public class UpvoteServiceImpl implements UpvoteService {
     public List<Upvote> getLikedPosts(User user) {
         return upvoteRepository.findByUser(user);
     }
-
-
 }

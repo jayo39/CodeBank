@@ -2,8 +2,8 @@ $(function() {
     $('.upvoteBtn').click(function() {
         // id of the snippet
         var snippetId = $(this).find('.snippet-id').val();
-        var button = $(this);
-        var container = $(this).parent();
+        var likeContainer = $(this).parent();
+        var likeCount = $('#likeCount_' + snippetId);
         const data = {
             "snippet_id": snippetId,
         };
@@ -13,18 +13,20 @@ $(function() {
             data: data,
             cache: false,
             success: function(data, status, xhr) {
-                // Assume data.likedStatus is true or false based on server response
                 var likedStat = data.isUpvote;
+                var likeNum = data.likeCount;
 
                 // Change button color based on likedStatus
                 if (likedStat) {
-                    button.removeClass('liked');
-                    button.removeClass('not-liked');
-                    button.addClass('liked');
+                    likeContainer.removeClass('liked');
+                    likeContainer.removeClass('not-liked');
+                    likeContainer.addClass('liked');
+                    likeCount.text(likeNum);
                 } else {
-                    button.removeClass('not-liked');
-                    button.removeClass('liked');
-                    button.addClass('not-liked');
+                    likeContainer.removeClass('not-liked');
+                    likeContainer.removeClass('liked');
+                    likeContainer.addClass('not-liked');
+                    likeCount.text(likeNum);
                 }
             },
         });

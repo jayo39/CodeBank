@@ -26,11 +26,14 @@
                 <p><span class="badge badge-pill" th:text="${snippet.language}"></span></p>
                 <img th:unless="${snippet.img}" th:src="@{/image/noimage.png}" alt="Snippet" class="snippet-image">
                 <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
+                <div id="likeContainer" th:class="${#arrays.contains(likedPosts, snippet.id) ? 'liked' : 'not-liked'}">
+                    <span class="material-symbols-outlined expand-circle-up upvoteBtn">
+                        expand_circle_up
+                        <input type="hidden" class="snippet-id" th:value="${snippet.id}">
+                    </span>
+                    <div th:id="'likeCount_' + ${snippet.id}" class="likeCount" th:text="${(snippet.likeCount == 0 || snippet.likeCount == null) ? 0 : snippet.likeCount}"></div>
+                </div>
                 <div class="snippet-title" th:text="${snippet.title}"></div>
-                <span th:class="${#arrays.contains(likedPosts, snippet.id) ? 'liked' + ' material-symbols-outlined expand-circle-up upvoteBtn' : 'not-liked' + ' material-symbols-outlined expand-circle-up upvoteBtn'}">
-                    expand_circle_up
-                    <input type="hidden" class="snippet-id" th:value="${snippet.id}">
-                </span>
                 <div class="snippet-description" th:text="${snippet.description}"></div>
             </div>
         </div>
