@@ -27,6 +27,7 @@
                 <img th:unless="${snippet.img}" th:src="@{/image/noimage.png}" alt="Snippet" class="snippet-image">
                 <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
                 <div class="snippet-title" th:text="${snippet.title}"></div>
+                <span class="material-symbols-outlined expand-circle-up">expand_circle_up</span>
                 <div class="snippet-description" th:text="${snippet.description}"></div>
             </div>
         </div>

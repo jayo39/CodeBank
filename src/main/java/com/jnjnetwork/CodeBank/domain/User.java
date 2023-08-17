@@ -31,6 +31,11 @@ public class User extends CreatedTimeEntity{
     @OneToMany
     @JoinColumn(name = "user_id")
     @ToString.Exclude
+    private List<Snippet> snippets = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private List<Upvote> upvotes = new ArrayList<>();
 
     // User:Role = N:M
