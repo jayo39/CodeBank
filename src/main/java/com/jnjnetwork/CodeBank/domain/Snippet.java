@@ -2,7 +2,9 @@ package com.jnjnetwork.CodeBank.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,8 +17,6 @@ public class Snippet extends CreatedTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ColumnDefault(value = "0")
-    private Long likes;
     @Column(nullable = false)
     private String title;
     private String description;
@@ -26,4 +26,9 @@ public class Snippet extends CreatedTimeEntity {
     private String code;
     private String img;
     private Boolean isPublic;
+
+    @OneToMany
+    @JoinColumn(name = "snippet_id")
+    @ToString.Exclude
+    private List<Upvote> upvotes = new ArrayList<>();
 }

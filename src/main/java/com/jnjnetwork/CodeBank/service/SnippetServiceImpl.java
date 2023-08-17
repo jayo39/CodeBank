@@ -4,6 +4,7 @@ import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.repository.SnippetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,7 +40,7 @@ public class SnippetServiceImpl implements SnippetService{
 
     @Override
     public List<Snippet> findPublic() {
-        return snippetRepository.findByIsPublic(true);
+        return snippetRepository.findByIsPublic(true, Sort.by(Sort.Order.desc("reg_date")));
     }
 
     private int upload(Snippet snippet, MultipartFile file) {

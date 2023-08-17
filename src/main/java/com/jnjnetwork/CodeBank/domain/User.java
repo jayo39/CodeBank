@@ -28,6 +28,11 @@ public class User extends CreatedTimeEntity{
     private String re_password;
     private String p_img;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private List<Upvote> upvotes = new ArrayList<>();
+
     // User:Role = N:M
     @ManyToMany(fetch = FetchType.EAGER)
     @ToString.Exclude

@@ -1,1 +1,2 @@
 SELECT * FROM User;
+SELECT * FROM Snippet;
