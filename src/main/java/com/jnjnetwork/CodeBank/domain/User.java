@@ -27,6 +27,7 @@ public class User extends CreatedTimeEntity{
     @Transient
     private String re_password;
     private String p_img;
+    private String job;
 
     @OneToMany
     @JoinColumn(name = "user_id")

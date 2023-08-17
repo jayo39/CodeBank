@@ -50,7 +50,7 @@ public class SnippetController {
         }
         snippet.setIsPublic("on".equals(isEnabled));
         int saveResult = snippetService.save(snippet, file);
-        return "/list";
+        return "redirect:/list";
     }
 
     @InitBinder

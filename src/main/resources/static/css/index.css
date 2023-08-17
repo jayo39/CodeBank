@@ -62,7 +62,8 @@ h1 {
     justify-content: space-evenly;
     font-family: 'Ubuntu', sans-serif;
     color: #fff;
-    margin-top: 160px;
+    margin-top: 130px;
+    margin-bottom: 50px;
 }
 
 .btn-warning {

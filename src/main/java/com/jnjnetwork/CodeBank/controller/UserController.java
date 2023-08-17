@@ -33,6 +33,9 @@ public class UserController {
     @GetMapping("/login")
     public void login() {;}
 
+    @GetMapping("/profile")
+    public void profile() {;}
+
     @PostMapping("/register")
     @ResponseBody
     public ResponseEntity<String> registerOk(@Valid User user, BindingResult result) {
