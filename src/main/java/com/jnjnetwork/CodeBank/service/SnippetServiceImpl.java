@@ -40,7 +40,7 @@ public class SnippetServiceImpl implements SnippetService{
 
     @Override
     public List<Snippet> findPublic() {
-        return snippetRepository.findByIsPublic(true, Sort.by(Sort.Order.desc("reg_date")));
+        return snippetRepository.findByIsPublic(true, Sort.by(Sort.Order.desc("regDate")));
     }
 
     private int upload(Snippet snippet, MultipartFile file) {
