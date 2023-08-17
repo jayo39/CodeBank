@@ -21,14 +21,10 @@ $(function() {
                     button.removeClass('liked');
                     button.removeClass('not-liked');
                     button.addClass('liked');
-                    container.animate({ marginTop: '-=10px' }, 100)
-                           .animate({ marginTop: '+=10px' }, 100);
                 } else {
                     button.removeClass('not-liked');
                     button.removeClass('liked');
                     button.addClass('not-liked');
-                    container.animate({ marginTop: '-=10px' }, 100)
-                           .animate({ marginTop: '+=10px' }, 100);
                 }
             },
         });
