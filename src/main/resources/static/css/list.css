@@ -1,6 +1,5 @@
 body {
   background: linear-gradient(-45deg, #6f1451, #BD1E86);
-  height: 100vh;
   margin: 0;
 }
 
@@ -81,4 +80,8 @@ hr {
 
 .badge {
     background-color: #FF8C00;
+}
+
+.container {
+  margin-bottom: 50px;
 }
