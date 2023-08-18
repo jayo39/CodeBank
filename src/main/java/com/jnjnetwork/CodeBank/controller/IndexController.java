@@ -38,6 +38,7 @@ public class IndexController {
             list.add(post.getSnippet().getId());
         }
         model.addAttribute("likedPosts", list);
+        model.addAttribute("snippets_new", snippetService.findNewPublic());
         model.addAttribute("snippets", snippetService.findPublic());
     }
 }

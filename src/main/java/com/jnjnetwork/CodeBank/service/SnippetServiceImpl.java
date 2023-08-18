@@ -45,7 +45,16 @@ public class SnippetServiceImpl implements SnippetService{
 
     @Override
     public List<Snippet> findPublic() {
-        return snippetRepository.findByIsPublic(true, Sort.by(Sort.Order.desc("regDate")));
+        Sort sort = Sort.by(
+                Sort.Order.desc("likeCount"),
+                Sort.Order.desc("regDate")
+        );
+        return snippetRepository.findByIsPublic(true, sort);
+    }
+
+    @Override
+    public List<Snippet> findNewPublic() {
+        return snippetRepository.findNewByIsPublic(true, Sort.by(Sort.Order.desc("regDate")));
     }
 
     @Override

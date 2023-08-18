@@ -10,5 +10,6 @@ public interface SnippetService {
     int save(Snippet snippet, MultipartFile file);
     List<Snippet> findAll();
     List<Snippet> findPublic();
+    List<Snippet> findNewPublic();
     Snippet findById(Long id);
 }
