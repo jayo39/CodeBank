@@ -15,13 +15,12 @@
 <body>
 <script sec:authorize="isAuthenticated()" th:inline="javascript">
     const logged_user = [[${user.id}]];
-    console.log([[${page}]]);
 </script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <div id="top-title">
     <div class="title">Get Inspired</div>
 </div>
-<h2>Popular Snippets
+<h2>Most Popular
     <span class="material-symbols-outlined fire-icon">
         local_fire_department
     </span>

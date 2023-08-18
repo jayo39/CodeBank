@@ -1,6 +1,6 @@
 $(function() {
     $('.upvoteBtn').click(function() {
-        if (logged_user == null) {
+        if (typeof logged_user === 'undefined') {
             alert('You must login to like the post.');
             return;
         }

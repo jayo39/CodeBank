@@ -25,8 +25,8 @@ spring:
 
 app:
   pagination:
-    write_pages: 6
-    page_rows: 10
+    write_pages: 10
+    page_rows: 6
 
   upload:
     path: upload
