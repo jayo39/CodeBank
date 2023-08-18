@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,24 +13,20 @@
     <title>CodeBank</title>
 </head>
 <body>
-<script th:inline="javascript">
-    const logged_user = [[${user}]];
+<script sec:authorize="isAuthenticated()" th:inline="javascript">
+    const logged_user = [[${user.id}]];
+    console.log([[${page}]]);
 </script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
-<form>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col d-flex input-group">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search by title, language or description" aria-label="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </div>
-        </div>
-    </div>
-</form>
 <div id="top-title">
     <div class="title">Get Inspired</div>
 </div>
-<h2>Popular Snippets</h2>
+<h2>Popular Snippets
+    <span class="material-symbols-outlined fire-icon">
+        local_fire_department
+    </span>
+</h2>
+
 <div class="container">
     <div class="row">
         <div class="col-md-4" th:each="snippet : ${snippets}">
@@ -53,6 +49,8 @@
         </div>
     </div>
 </div>
+<th:block th:insert="~{component/pagination_popular.html::pagination_popular}"></th:block>
+
 <hr>
 
 <div class="title">Recently Shared</div>

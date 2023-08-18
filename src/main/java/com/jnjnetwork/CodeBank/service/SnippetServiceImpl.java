@@ -2,10 +2,15 @@ package com.jnjnetwork.CodeBank.service;
 
 import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.repository.SnippetRepository;
+import com.jnjnetwork.CodeBank.util.U;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,12 +53,46 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
-    public List<Snippet> findPublic() {
+    public List<Snippet> findPublic(Integer page, Model model) {
+        // default page is 1
+        if(page == null) page = 1;
+        if(page < 1) page = 1;
+
+        HttpSession session = U.getSession();
+        Integer writePages = (Integer)session.getAttribute("writePages");
+        if(writePages == null) writePages = WRITE_PAGES;
+        Integer pageRows = (Integer)session.getAttribute("pageRows");
+        if(pageRows == null) pageRows = PAGE_ROWS;
+        // set current page in session
+        session.setAttribute("page", page);
+
         Sort sort = Sort.by(
                 Sort.Order.desc("likeCount"),
                 Sort.Order.desc("regDate")
         );
-        return snippetRepository.findByIsPublic(true, sort);
+
+        Page<Snippet> pageWrites = snippetRepository.findByIsPublic(true, PageRequest.of(page - 1, pageRows, sort));
+
+        long cnt = pageWrites.getTotalElements();
+        int totalPage =  pageWrites.getTotalPages();
+
+        if(page > totalPage) page = totalPage;
+        int fromRow = (page - 1) * pageRows;
+        int startPage = (((page - 1) / writePages) * writePages) + 1;
+        int endPage = startPage + writePages - 1;
+        if (endPage >= totalPage) endPage = totalPage;
+
+        model.addAttribute("cnt", cnt);  // total snippets
+        model.addAttribute("page", page); // current page
+        model.addAttribute("totalPage", totalPage);  // total pages
+        model.addAttribute("pageRows", pageRows);  // number of snippets in 1 page
+
+        model.addAttribute("url", U.getRequest().getRequestURI());
+        model.addAttribute("writePages", writePages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return pageWrites.getContent();
     }
 
     @Override

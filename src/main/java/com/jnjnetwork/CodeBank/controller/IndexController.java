@@ -30,7 +30,7 @@ public class IndexController {
     }
 
     @GetMapping("/list")
-    public void list(Model model) {
+    public void list(Integer page, Model model) {
         User user = U.getLoggedUser();
         List<Long> list = new ArrayList<>();
         List<Upvote> likedPosts = upvoteService.getLikedPosts(user);
@@ -40,6 +40,6 @@ public class IndexController {
         model.addAttribute("user", user);
         model.addAttribute("likedPosts", list);
         model.addAttribute("snippets_new", snippetService.findNewPublic());
-        model.addAttribute("snippets", snippetService.findPublic());
+        model.addAttribute("snippets", snippetService.findPublic(page, model));
     }
 }
