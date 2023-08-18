@@ -13,6 +13,9 @@
     <title>CodeBank</title>
 </head>
 <body>
+<script th:inline="javascript">
+    const logged_user = [[${user}]];
+</script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <form>
     <div class="container mt-4">

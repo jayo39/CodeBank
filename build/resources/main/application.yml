@@ -21,11 +21,11 @@ spring:
     properties:
       hibernate.format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 app:
   pagination:
-    write_pages: 10
+    write_pages: 6
     page_rows: 10
 
   upload:

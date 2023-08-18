@@ -21,6 +21,10 @@ import java.util.List;
 public class SnippetServiceImpl implements SnippetService{
     @Value("${app.upload.path}")
     private String uploadDir;
+    @Value("${app.pagination.write_pages}")
+    private int WRITE_PAGES;
+    @Value("${app.pagination.page_rows}")
+    private int PAGE_ROWS;
     private SnippetRepository snippetRepository;
 
     @Autowired

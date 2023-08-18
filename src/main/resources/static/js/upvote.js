@@ -1,5 +1,9 @@
 $(function() {
     $('.upvoteBtn').click(function() {
+        if (logged_user == null) {
+            alert('You must login to like the post.');
+            return;
+        }
         // id of the snippet
         var snippetId = $(this).find('.snippet-id').val();
         var likeContainer = $('.likecontainer_' + snippetId);

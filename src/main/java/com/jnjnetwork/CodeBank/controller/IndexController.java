@@ -37,6 +37,7 @@ public class IndexController {
         for(Upvote post : likedPosts) {
             list.add(post.getSnippet().getId());
         }
+        model.addAttribute("user", user);
         model.addAttribute("likedPosts", list);
         model.addAttribute("snippets_new", snippetService.findNewPublic());
         model.addAttribute("snippets", snippetService.findPublic());
