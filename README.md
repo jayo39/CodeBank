@@ -1,6 +1,6 @@
 # CodeBank
 
-CodeBank is a web platform designed for users to effortlessly share, store, and discover code snippets. The application is built using Spring, JPA, and Thymeleaf, ensuring a seamless experience managing the database. Users can interact by liking snippets and search for specific codes by performing keyword-based searches. Administrators get access to tools to manage users and their posts.
+CodeBank is a web platform designed for users to share, store, and discover code snippets. The application is built using Spring, JPA, and Thymeleaf. Users can interact by liking snippets and search for specific codes by performing keyword-based searches. Administrators get access to tools to manage users and their posts.
 
 ## Features
 
