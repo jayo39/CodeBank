@@ -17,7 +17,7 @@
                 </span>
                 <div id="login">
                     <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
-                    <span sec:authorize="isAuthenticated()">Welcome, <a th:with="user=${#authentication.principal.user}" th:href="@{user/profile}" th:text="${user.name}"></a></span>
+                    <span sec:authorize="isAuthenticated()">Welcome, <a th:with="user=${#authentication.principal.user}" th:href="@{/user/profile}" th:text="${user.name}"></a></span>
                 </div>
             </nav>
         </div>

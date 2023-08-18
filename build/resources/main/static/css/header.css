@@ -17,7 +17,7 @@ header {
 }
 
 #navicon:hover {
-    color: #43aa8c;
+    color: #43aa8c !important;
 }
 
 #login {
@@ -51,4 +51,13 @@ header {
     width: fit-content;
     font-size: 20px;
     cursor: pointer;
+}
+
+.header-nav {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.header-nav:hover {
+    color: #43aa8c;
 }
