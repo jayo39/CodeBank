@@ -30,4 +30,7 @@ public class Snippet extends CreatedTimeEntity {
     @JoinColumn(name = "snippet_id")
     @ToString.Exclude
     private List<Upvote> upvotes = new ArrayList<>();
+    @ManyToOne
+    @ToString.Exclude
+    private User user;
 }

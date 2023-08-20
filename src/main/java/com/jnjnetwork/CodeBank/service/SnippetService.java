@@ -1,6 +1,7 @@
 package com.jnjnetwork.CodeBank.service;
 
 import com.jnjnetwork.CodeBank.domain.Snippet;
+import com.jnjnetwork.CodeBank.domain.User;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 

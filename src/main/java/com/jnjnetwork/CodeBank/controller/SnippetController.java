@@ -40,6 +40,8 @@ public class SnippetController {
             , BindingResult result
             , RedirectAttributes reAttr
             , Model model) {
+        User user = U.getLoggedUser();
+        snippet.setUser(user);
         if (result.hasErrors()) {
             reAttr.addFlashAttribute("title", snippet.getTitle());
             reAttr.addFlashAttribute("language", snippet.getLanguage());

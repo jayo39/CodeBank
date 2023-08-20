@@ -27,13 +27,10 @@
 </h2>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4" th:each="snippet : ${snippets}">
-            <div class="snippet-box">
-                <p><span class="badge badge-pill" th:text="${snippet.language}"></span></p>
-                <img th:unless="${snippet.img}" th:src="@{/image/noimage.png}" alt="Snippet" class="snippet-image">
-                <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
-                <div th:class="'likecontainer_' + ${snippet.id} + ' ' + ${#arrays.contains(likedPosts, snippet.id) ? 'liked' : 'not-liked'}">
+    <div th:each="snippet : ${snippets}">
+        <div class="snippet-box">
+            <div class="snippet-flex">
+                <div th:class="'likecontainer_' + ${snippet.id} + ' ' + ${#arrays.contains(likedPosts, snippet.id) ? 'liked' : 'not-liked'} + ' ' + 'like-box'">
                     <div>
                         <span class="material-symbols-outlined expand-circle-up upvoteBtn">
                             expand_circle_up
@@ -42,8 +39,20 @@
                         <div th:class="'likeCount_' + ${snippet.id} + ' ' + 'likeCount'" th:text="${snippet.likeCount}"></div>
                     </div>
                 </div>
-                <div class="snippet-title" th:text="${snippet.title}"></div>
-                <div class="snippet-description" th:text="${snippet.description}"></div>
+                <div>
+                    <img th:unless="${snippet.img}" th:src="@{/image/noimage.png}" alt="Snippet" class="snippet-image">
+                    <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
+                </div>
+                <div class="snippet-desc-box">
+                    <div class="badge badge-pill" th:text="${snippet.language}"></div>
+                    <div class="snippet-title" th:text="${snippet.title}"></div>
+                    <div class="snippet-description" th:text="${snippet.description}"></div>
+                </div>
+            </div>
+            <div class="credit">
+                <div th:text="'Posted by: ' + ${snippet.user.name}"></div>
+<!--                <span><img th:unless="$(snippet.user.p_img)}" th:src="@{/image/noprofile.png}"></span>-->
+<!--                <span><img th:if="$(snippet.user.p_img)}" th:src="@{'/upload/' + $(snippet.user.p_img)}"></span>-->
             </div>
         </div>
     </div>

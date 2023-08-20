@@ -33,11 +33,23 @@ hr {
     margin: 35px 10px 10px 10px;
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
     background-color: rgba(255, 255, 255, 0.1);
-    min-height: 400px;
-    max-height: 400px;
+    width; 100%;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+
+.credit {
+    margin-top: 180px;
+    font-family: 'Source Code Pro', monospace;
+    color: #fff;
+}
+
+.snippet-flex {
+    display: flex;
+    justify-content: start;
+    align-content: center;
 }
 
 .snippet-image {
@@ -46,20 +58,28 @@ hr {
     max-width: 200px;
     max-height: 200px;
     object-fit: cover;
-    margin-bottom: 10px;
 }
 .snippet-title {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-top: 5px;
     color: #fff;
+    font-family: 'Ubuntu', sans-serif;
 }
 .snippet-description {
-    font-size: 14px;
+    font-size: 19px;
     color: rgba(255, 255, 255, 0.8);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.snippet-desc-box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
 }
 
 .expand-circle-up {
+    font-size: 30px;
     cursor: pointer;
     transition: color 0.3s;
 }
@@ -68,12 +88,19 @@ hr {
     color: #0FFF50;
 }
 
+.like-box {
+    margin: 0 16px 0 2px;
+    text-align: center;
+}
+
 .not-liked {
     color: #A0A0A0;
 }
 
 .badge {
     background-color: #FF8C00;
+    min-width: 90px;
+    max-width: 90px;
 }
 
 .container {
@@ -81,7 +108,7 @@ hr {
 }
 
 .likeCount {
-    font-size: 14px;
+    font-size: 20px;
     margin-top: -5px;
     transition: color 0.3s;
 }
