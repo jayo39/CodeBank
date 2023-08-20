@@ -9,6 +9,11 @@ body {
     margin-top: 30px;
 }
 
+#title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .title {
     font-family: 'Ubuntu', sans-serif;
     font-size: 35px;
@@ -44,6 +49,7 @@ hr {
     margin-top: 180px;
     font-family: 'Source Code Pro', monospace;
     color: #fff;
+    display: flex;
 }
 
 .snippet-flex {
@@ -58,18 +64,20 @@ hr {
     max-width: 200px;
     max-height: 200px;
     object-fit: cover;
+    border-radius: 2px;
 }
 .snippet-title {
     font-size: 25px;
     font-weight: bold;
     margin-top: 5px;
     color: #fff;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Source Code Pro', monospace;
 }
+
 .snippet-description {
     font-size: 19px;
     color: rgba(255, 255, 255, 0.8);
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Source Code Pro', monospace;
 }
 
 .snippet-desc-box {
@@ -161,4 +169,20 @@ hr {
 .custom-link {
     text-decoration: none;
     color: #fff;
+}
+
+.profileimg {
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    margin-left: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#sort-select {
+    width: 160px;
+    margin: 35px 50px 0 0;
+    font-family: 'Source Code Pro', monospace;
 }

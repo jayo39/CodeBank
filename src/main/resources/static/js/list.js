@@ -1,7 +1,7 @@
 $(function() {
     $(".snippet-description").each(function() {
-        if ($(this).text().length > 50) {
-        $(this).text($(this).text().substring(0, 50) + "...");
+        if ($(this).text().length > 150) {
+        $(this).text($(this).text().substring(0, 150) + "...");
         }
     });
 });

@@ -39,6 +39,7 @@ body {
   width: 250px;
   border-radius: 20px;
   margin-bottom: 15px;
+  font-family: 'Source Code Pro', monospace;
 }
 
 form {
@@ -60,4 +61,16 @@ form {
 
 #passwordForm {
     margin-bottom: 20px;
+}
+
+#signup-line {
+    font-family: 'Source Code Pro', monospace;
+}
+
+.ubuntu {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.code-font {
+    font-family: 'Source Code Pro', monospace;
 }

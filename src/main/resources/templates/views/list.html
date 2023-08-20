@@ -17,8 +17,17 @@
     const logged_user = [[${user.id}]];
 </script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
-<div id="top-title">
-    <div class="title">Get Inspired</div>
+<div id="title-container">
+    <div id="top-title">
+        <div class="title">Get Inspired</div>
+    </div>
+    <div id="sort-select">
+        <select class="form-select form-select-sm my-2" name="sort">
+            <option selected value="">Most Popular</option>
+            <option value="">Newest</option>
+            <option value="">Following</option>
+        </select>
+    </div>
 </div>
 <h2>Most Popular
     <span class="material-symbols-outlined fire-icon">
@@ -40,7 +49,7 @@
                     </div>
                 </div>
                 <div>
-                    <img th:unless="${snippet.img}" th:src="@{/image/noimage.png}" alt="Snippet" class="snippet-image">
+                    <img th:unless="${snippet.img}" th:src="@{/image/default_post.png}" alt="Snippet" class="snippet-image">
                     <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
                 </div>
                 <div class="snippet-desc-box">
@@ -51,8 +60,8 @@
             </div>
             <div class="credit">
                 <div th:text="'Posted by: ' + ${snippet.user.name}"></div>
-<!--                <span><img th:unless="$(snippet.user.p_img)}" th:src="@{/image/noprofile.png}"></span>-->
-<!--                <span><img th:if="$(snippet.user.p_img)}" th:src="@{'/upload/' + $(snippet.user.p_img)}"></span>-->
+                <div><img th:unless="${snippet.user.p_img}" th:src="@{/image/default_profile.png}" class="profileimg"></div>
+                <div><img th:if="${snippet.user.p_img}" th:src="@{'/upload/' + $(snippet.user.p_img)}" class="profileimg"></div>
             </div>
         </div>
     </div>
