@@ -121,11 +121,6 @@ hr {
     transition: color 0.3s;
 }
 
-.fire-icon {
-    position: absolute;
-    margin: 0px 0px 3px 3px;
-}
-
 .custom-pagination {
     display: flex;
     justify-content: center;
@@ -185,4 +180,15 @@ hr {
     width: 160px;
     margin: 35px 50px 0 0;
     font-family: 'Source Code Pro', monospace;
+}
+
+#sortTitle {
+  display: inline-block;
+}
+
+#sortIcon {
+  display: inline-block;
+  color: #fff;
+  position: absolute;
+  margin: 0px 0px 3px 3px;
 }

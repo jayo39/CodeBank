@@ -16,24 +16,29 @@
 <script sec:authorize="isAuthenticated()" th:inline="javascript">
     const logged_user = [[${user.id}]];
 </script>
+<script th:inline="javascript">
+    var sort = [[${sort}]];
+</script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <div id="title-container">
     <div id="top-title">
         <div class="title">Get Inspired</div>
     </div>
-    <div id="sort-select">
-        <select class="form-select form-select-sm my-2" name="sort">
-            <option selected value="">Most Popular</option>
-            <option value="">Newest</option>
-            <option value="">Following</option>
-        </select>
-    </div>
+    <form name="sort" th:action="@{/listSort}" method="POST">
+        <div id="sort-select">
+            <select id="sort" class="form-select form-select-sm my-2" name="sort" onchange="changeSort()">
+                <option id="popular" value="popular">Most Popular</option>
+                <option id="newest" value="newest">Newest</option>
+                <option id="following" value="following">Following</option>
+            </select>
+        </div>
+    </form>
 </div>
-<h2>Most Popular
-    <span class="material-symbols-outlined fire-icon">
-        local_fire_department
-    </span>
+<h2 id="sortTitle">Most Popular
 </h2>
+<span id="sortIcon" class="material-symbols-outlined">
+        local_fire_department
+</span>
 
 <div class="container">
     <div th:each="snippet : ${snippets}">
@@ -66,33 +71,7 @@
         </div>
     </div>
 </div>
-<th:block th:insert="~{component/pagination_popular.html::pagination_popular}"></th:block>
-
-<hr>
-
-<div class="title">Recently Shared</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4" th:each="snippet_new : ${snippets_new}">
-            <div class="snippet-box">
-                <p><span class="badge badge-pill" th:text="${snippet_new.language}"></span></p>
-                <img th:unless="${snippet_new.img}" th:src="@{/image/noimage.png}" alt="Snippet" class="snippet-image">
-                <img th:if="${snippet_new.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
-                <div th:class="'likecontainer_' + ${snippet_new.id} + ' ' + ${#arrays.contains(likedPosts, snippet_new.id) ? 'liked' : 'not-liked'}">
-                    <div>
-                        <span class="material-symbols-outlined expand-circle-up upvoteBtn">
-                            expand_circle_up
-                            <input type="hidden" class="snippet-id" th:value="${snippet_new.id}">
-                        </span>
-                        <div th:class="'likeCount_' + ${snippet_new.id} + ' ' + 'likeCount'" th:text="${snippet_new.likeCount}"></div>
-                    </div>
-                </div>
-                <div class="snippet-title" th:text="${snippet_new.title}"></div>
-                <div class="snippet-description" th:text="${snippet_new.description}"></div>
-            </div>
-        </div>
-    </div>
-</div>
+<th:block th:insert="~{component/pagination.html::pagination}"></th:block>
 
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>

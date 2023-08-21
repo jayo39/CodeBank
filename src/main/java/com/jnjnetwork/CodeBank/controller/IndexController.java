@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +30,27 @@ public class IndexController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("userTotal", userService.countUserTotal());
-        return "/index.html";
+        model.addAttribute("snippetTotal", snippetService.countPublicSnippets(true));
+        return "/index";
     }
 
     @GetMapping("/list")
-    public void list(Integer page, Model model) {
+    public void list(@ModelAttribute("sort") String sortMethod, Integer page, Model model) {
         User user = U.getLoggedUser();
         List<Long> list = new ArrayList<>();
         List<Upvote> likedPosts = upvoteService.getLikedPosts(user);
         for(Upvote post : likedPosts) {
             list.add(post.getSnippet().getId());
         }
+        model.addAttribute("snippets", snippetService.findPublic(sortMethod, page, model));
+        model.addAttribute("sort", sortMethod);
         model.addAttribute("user", user);
         model.addAttribute("likedPosts", list);
-        model.addAttribute("snippets_new", snippetService.findNewPublic());
-        model.addAttribute("snippets", snippetService.findPublic(page, model));
+    }
+
+    @PostMapping("/listSort")
+    public String listSort(@RequestParam("sort") String sortMethod, RedirectAttributes attr) {
+        attr.addFlashAttribute("sort", sortMethod);
+        return "redirect:/list";
     }
 }

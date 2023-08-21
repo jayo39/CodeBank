@@ -27,7 +27,6 @@ $('#closeModal').on('click', function() {
 closeButton.on('click', closeModal);
 
 $(function() {
-    // Title click event
     $('#title').on('click', function() {
         location.href = window.location.protocol + "//" + window.location.host + "/";
     });

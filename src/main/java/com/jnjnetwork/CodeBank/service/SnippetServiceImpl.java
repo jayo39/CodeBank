@@ -1,7 +1,6 @@
 package com.jnjnetwork.CodeBank.service;
 
 import com.jnjnetwork.CodeBank.domain.Snippet;
-import com.jnjnetwork.CodeBank.domain.User;
 import com.jnjnetwork.CodeBank.repository.SnippetRepository;
 import com.jnjnetwork.CodeBank.util.U;
 import jakarta.servlet.http.HttpSession;
@@ -54,7 +53,8 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
-    public List<Snippet> findPublic(Integer page, Model model) {
+    public List<Snippet> findPublic(String sortMethod, Integer page, Model model) {
+        Sort sort;
         // default page is 1
         if(page == null) page = 1;
         if(page < 1) page = 1;
@@ -67,10 +67,21 @@ public class SnippetServiceImpl implements SnippetService{
         // set current page in session
         session.setAttribute("page", page);
 
-        Sort sort = Sort.by(
-                Sort.Order.desc("likeCount"),
-                Sort.Order.desc("regDate")
-        );
+        if ("newest".equals(sortMethod)) {
+            sort = Sort.by(
+                    Sort.Order.desc("regDate")
+            );
+        } else if ("following".equals(sortMethod)) {
+            sort = Sort.by(
+                    // TODO
+                    Sort.Order.desc("regDate")
+            );
+        } else {
+            sort = Sort.by(
+                    Sort.Order.desc("likeCount"),
+                    Sort.Order.desc("regDate")
+            );
+        }
 
         Page<Snippet> pageWrites = snippetRepository.findByIsPublic(true, PageRequest.of(page - 1, pageRows, sort));
 
@@ -97,13 +108,13 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
-    public List<Snippet> findNewPublic() {
-        return snippetRepository.findNewByIsPublic(true, Sort.by(Sort.Order.desc("regDate")));
+    public Snippet findById(Long id) {
+        return snippetRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
     @Override
-    public Snippet findById(Long id) {
-        return snippetRepository.findById(id).orElseThrow(RuntimeException::new);
+    public long countPublicSnippets(Boolean isPublic) {
+        return snippetRepository.countByIsPublic(isPublic);
     }
 
     private int upload(Snippet snippet, MultipartFile file) {

@@ -11,7 +11,7 @@ public interface SnippetService {
     void save(Snippet snippet);
     int save(Snippet snippet, MultipartFile file);
     List<Snippet> findAll();
-    List<Snippet> findPublic(Integer page, Model model);
-    List<Snippet> findNewPublic();
+    List<Snippet> findPublic(String sort, Integer page, Model model);
     Snippet findById(Long id);
+    long countPublicSnippets(Boolean isPublic);
 }
