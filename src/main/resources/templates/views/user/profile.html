@@ -19,8 +19,8 @@
         <div class="profile-container">
             <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
             <div id="profile-info">
-                <div class="profile-name">John Doe</div>
-                <div class="profile-bio">Email: john@example.com</div>
+                <div class="profile-name" th:text="${user.name}"></div>
+                <div class="profile-bio" th:text="${user.email}"></div>
             </div>
         </div>
     </div>

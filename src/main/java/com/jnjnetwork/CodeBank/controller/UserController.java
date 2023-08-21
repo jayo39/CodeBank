@@ -3,10 +3,12 @@ package com.jnjnetwork.CodeBank.controller;
 import com.jnjnetwork.CodeBank.domain.User;
 import com.jnjnetwork.CodeBank.domain.UserValidator;
 import com.jnjnetwork.CodeBank.service.UserService;
+import com.jnjnetwork.CodeBank.util.U;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
@@ -34,7 +36,10 @@ public class UserController {
     public void login() {;}
 
     @GetMapping("/profile")
-    public void profile() {;}
+    public void profile(Model model) {
+        User user = U.getLoggedUser();
+        model.addAttribute("user", user);
+    }
 
     @PostMapping("/register")
     @ResponseBody
