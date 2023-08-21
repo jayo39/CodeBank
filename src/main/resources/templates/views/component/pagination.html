@@ -5,7 +5,7 @@
 <th:block th:fragment="pagination">
   <div class="container mt-1">
     <ul class="custom-pagination justify-content-center">
-      <li class="custom-pagination-item" th:if="${page > 1}"><a class="custom-link" th:href="${url }">&laquo;</a></li>
+      <li class="custom-pagination-item" th:if="${page > 1}"><a class="custom-link" th:href="@{${url }(sort=${sort})}">&laquo;</a></li>
 
       <li class="custom-pagination-item" th:if="${startPage > 1}"><a class="custom-link" th:href="@{${url }(page=${startPage - 1 }, sort=${sort})}">&lsaquo;</a></li>
 
