@@ -64,7 +64,7 @@ hr {
     max-width: 200px;
     max-height: 200px;
     object-fit: cover;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 .snippet-title {
     font-size: 25px;
