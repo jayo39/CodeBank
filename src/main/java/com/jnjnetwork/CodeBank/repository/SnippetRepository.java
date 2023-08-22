@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface SnippetRepository extends JpaRepository<Snippet, Long> {
     List<Snippet> findByLanguage(String language);
+    Page<Snippet> findByUserId(Long id, PageRequest pageRequest);
     Page<Snippet> findByIsPublic(Boolean isPublic, PageRequest pageRequest);
     long countByIsPublic(Boolean isPublic);
 }

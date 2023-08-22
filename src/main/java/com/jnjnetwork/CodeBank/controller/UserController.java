@@ -2,6 +2,7 @@ package com.jnjnetwork.CodeBank.controller;
 
 import com.jnjnetwork.CodeBank.domain.User;
 import com.jnjnetwork.CodeBank.domain.UserValidator;
+import com.jnjnetwork.CodeBank.service.SnippetService;
 import com.jnjnetwork.CodeBank.service.UserService;
 import com.jnjnetwork.CodeBank.util.U;
 import jakarta.validation.Valid;
@@ -23,6 +24,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    SnippetService snippetService;
 
     @PostMapping("/loginError")
     public String loginError() {
@@ -36,9 +39,11 @@ public class UserController {
     public void login() {;}
 
     @GetMapping("/profile")
-    public void profile(Model model) {
+    public void profile(Integer page, Model model) {
         User user = U.getLoggedUser();
+
         model.addAttribute("user", user);
+        model.addAttribute("snippets", snippetService.findByUserId(user.getId(), page, model));
     }
 
     @PostMapping("/register")

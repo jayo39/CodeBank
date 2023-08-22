@@ -108,6 +108,45 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
+    public List<Snippet> findByUserId(Long id, Integer page, Model model) {
+        Sort sort = Sort.by(Sort.Order.desc("regDate"));
+        // default page is 1
+        if(page == null) page = 1;
+        if(page < 1) page = 1;
+
+        HttpSession session = U.getSession();
+        Integer writePages = (Integer)session.getAttribute("writePages");
+        if(writePages == null) writePages = WRITE_PAGES;
+        Integer pageRows = (Integer)session.getAttribute("pageRows");
+        if(pageRows == null) pageRows = PAGE_ROWS;
+        // set current page in session
+        session.setAttribute("page", page);
+
+        Page<Snippet> pageWrites = snippetRepository.findByUserId(id, PageRequest.of(page - 1, pageRows, sort));
+
+        long cnt = pageWrites.getTotalElements();
+        int totalPage =  pageWrites.getTotalPages();
+
+        if(page > totalPage) page = totalPage;
+        int fromRow = (page - 1) * pageRows;
+        int startPage = (((page - 1) / writePages) * writePages) + 1;
+        int endPage = startPage + writePages - 1;
+        if (endPage >= totalPage) endPage = totalPage;
+
+        model.addAttribute("cnt", cnt);  // total snippets
+        model.addAttribute("page", page); // current page
+        model.addAttribute("totalPage", totalPage);  // total pages
+        model.addAttribute("pageRows", pageRows);  // number of snippets in 1 page
+
+        model.addAttribute("url", U.getRequest().getRequestURI());
+        model.addAttribute("writePages", writePages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return pageWrites.getContent();
+    }
+
+    @Override
     public Snippet findById(Long id) {
         return snippetRepository.findById(id).orElseThrow(RuntimeException::new);
     }
