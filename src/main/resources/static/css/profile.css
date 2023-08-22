@@ -6,10 +6,12 @@
   margin: 0;
   padding: 0;
 }
+
 .first-container {
   display: flex;
   justify-content: center;
 }
+
 .profile-container {
   padding: 20px;
   width: 100%;
@@ -19,6 +21,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .profile-picture {
   min-width: 150px;
   min-height: 150px;
@@ -27,23 +30,28 @@
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid #aa438c;
-  margin-right: 50px;
+  margin-bottom: 5px;
 }
+
 .profile-name {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 .profile-bio {
   font-size: 16px;
 }
+
 .profile-info {
   margin-left: 50px;
 }
+
 hr {
   border-color: #fff;
   border-width: 10px;
 }
+
 h2 {
   font-family: 'Ubuntu', sans-serif;
   font-size: 35px;
@@ -51,7 +59,12 @@ h2 {
   display: flex;
   align-items: center;
 }
+
 .my-snippet {
   font-size: 35px;
   margin: 3px 0 0 5px;
+}
+
+#profile-image{
+    margin-right: 50px;
 }

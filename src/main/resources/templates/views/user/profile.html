@@ -17,10 +17,14 @@
 <div class="full-height">
     <div id="first-container">
         <div class="profile-container">
-            <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+            <div id="profile-image">
+                <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+                <div class="profile-bio" th:text="${user.email}"></div>
+            </div>
             <div id="profile-info">
                 <div class="profile-name" th:text="${user.name}"></div>
-                <div class="profile-bio" th:text="${user.email}"></div>
+                <div class="profile-bio">Followers: #</div>
+                <div class="profile-bio">Following: #</div>
             </div>
         </div>
     </div>

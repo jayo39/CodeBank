@@ -12,6 +12,13 @@ body {
 #title-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+#sub-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .title {
@@ -131,7 +138,7 @@ hr {
 .custom-pagination-item {
     width: 30px;
     height: 30px;
-    margin: 0 5px;
+    margin: 0 3px 0 3px;
     border: 2px solid #FFA500;
     border-radius: 50%;
     display: flex;
@@ -183,12 +190,16 @@ hr {
 }
 
 #sortTitle {
-  display: inline-block;
+    display: inline-block;
 }
 
 #sortIcon {
-  display: inline-block;
-  color: #fff;
-  position: absolute;
-  margin: 0px 0px 3px 3px;
+    display: inline-block;
+    color: #fff;
+    position: absolute;
+    margin: 0px 0px 3px 3px;
+}
+
+#post-btn {
+    margin-right: 50px;
 }

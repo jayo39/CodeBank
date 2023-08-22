@@ -34,11 +34,19 @@
         </div>
     </form>
 </div>
-<h2 id="sortTitle">Most Popular
-</h2>
-<span id="sortIcon" class="material-symbols-outlined">
-        local_fire_department
-</span>
+<div id="sub-title-container">
+    <div>
+        <h2 id="sortTitle">Most Popular
+        </h2>
+        <span id="sortIcon" class="material-symbols-outlined">
+            local_fire_department
+        </span>
+    </div>
+    <div>
+        <a id="post-btn" class="btn btn-primary" href="/snippet/add">Post Snippet</a>
+    </div>
+</div>
+
 
 <div class="container">
     <div th:each="snippet : ${snippets}">
