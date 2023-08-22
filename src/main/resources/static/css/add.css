@@ -1,12 +1,79 @@
+body {
+  margin: 0;
+  background: linear-gradient(-45deg, #6f1451, #BD1E86);
+  width: 100%;
+}
+
 #editor {
-    height: 300px;
-    border: 1px solid #ced4d9;
+  height: 300px;
+  border: 1px solid #ced4d9;
 }
 
 #submitBtn {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .custom-switch {
-    font-size: 17px;
+  font-size: 17px;
+}
+
+.desc {
+  flex-grow: 2;
+}
+
+#title {
+  border-radius: 50px 0 0 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+#description {
+  border-radius: 0 50px 50px 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+#title::placeholder {
+  color: #fff;
+}
+
+#description::placeholder {
+  color: #fff;
+}
+
+.form-select {
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+#editor {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+#fileinput {
+  color: #fff;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.publicswitch {
+  color: #fff;
+}
+
+.publicswitch input {
+  margin-right: 5px;
+}
+
+#imagelabel {
+  color: #fff;
+}
+
+.error {
+  color: #FF4433;
 }

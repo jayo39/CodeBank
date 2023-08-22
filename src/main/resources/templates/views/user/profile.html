@@ -10,31 +10,50 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/profile.css" rel="stylesheet">
+    <link href="/css/pagination.css" rel="stylesheet">
     <title>CodeBank</title>
 </head>
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
-<div class="full-height">
-    <div id="first-container">
-        <div class="profile-container">
-            <div id="profile-image">
-                <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
-                <div class="profile-bio" th:text="${user.email}"></div>
+<div id="first-container">
+    <div class="profile-container">
+        <div id="profile-image">
+            <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+            <div class="profile-bio" th:text="${user.email}"></div>
+        </div>
+        <div id="profile-info">
+            <div class="profile-name" th:text="${user.name}"></div>
+            <div class="profile-bio">Followers: #</div>
+            <div class="profile-bio">Following: #</div>
+        </div>
+    </div>
+</div>
+<hr>
+<h2>My Snippets
+    <span class="material-symbols-outlined my-snippet">
+            deployed_code
+    </span>
+</h2>
+<div class="mysnippet d-flex justify-content-center">
+    <div class="snippet-wrap" th:each="snippet : ${snippets}">
+        <div class="snippet-flex">
+            <div>
+                <img th:unless="${snippet.img}" th:src="@{/image/default_post.png}" alt="Snippet" class="snippet-image">
+                <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
             </div>
-            <div id="profile-info">
-                <div class="profile-name" th:text="${user.name}"></div>
-                <div class="profile-bio">Followers: #</div>
-                <div class="profile-bio">Following: #</div>
+            <div class="snippet-desc-box">
+                <div class="badge badge-pill" th:text="${snippet.language}"></div>
+                <div class="snippet-title" th:text="${snippet.title}"></div>
+                <div class="snippet-description" th:text="${snippet.description}"></div>
+            </div>
+            <div class="snippetbutton">
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
-    <hr>
-    <h2>My Snippets
-        <span class="material-symbols-outlined my-snippet">
-                deployed_code
-            </span>
-    </h2>
 </div>
+<th:block th:insert="~{component/pagination.html::pagination}"></th:block>
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

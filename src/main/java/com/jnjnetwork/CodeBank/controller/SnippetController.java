@@ -50,7 +50,6 @@ public class SnippetController {
             reAttr.addFlashAttribute("img", snippet.getImg());
             List<FieldError> errList = result.getFieldErrors();
             for(FieldError err : errList) {
-                System.out.println(err.getField() + " : " + err.getCode());
                 reAttr.addFlashAttribute("error_" + err.getField(), err.getCode());
             }
             return "redirect:/snippet/add";

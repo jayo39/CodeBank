@@ -30,6 +30,10 @@ public class SnippetServiceImpl implements SnippetService{
     private int WRITE_PAGES;
     @Value("${app.pagination.page_rows}")
     private int PAGE_ROWS;
+    @Value("${app.pagination.profile_write_pages}")
+    private int PROFILE_WRITE_PAGES;
+    @Value("${app.pagination.profile_page_rows}")
+    private int PROFILE_PAGE_ROWS;
     private SnippetRepository snippetRepository;
 
     @Autowired
@@ -116,9 +120,9 @@ public class SnippetServiceImpl implements SnippetService{
 
         HttpSession session = U.getSession();
         Integer writePages = (Integer)session.getAttribute("writePages");
-        if(writePages == null) writePages = WRITE_PAGES;
+        if(writePages == null) writePages = PROFILE_WRITE_PAGES;
         Integer pageRows = (Integer)session.getAttribute("pageRows");
-        if(pageRows == null) pageRows = PAGE_ROWS;
+        if(pageRows == null) pageRows = PROFILE_PAGE_ROWS;
         // set current page in session
         session.setAttribute("page", page);
 

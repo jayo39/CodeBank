@@ -27,6 +27,8 @@ app:
   pagination:
     write_pages: 10
     page_rows: 6
+    profile_write_pages: 10
+    profile_page_rows: 8
 
   upload:
     path: upload

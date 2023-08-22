@@ -41,7 +41,6 @@ public class UserController {
     @GetMapping("/profile")
     public void profile(Integer page, Model model) {
         User user = U.getLoggedUser();
-
         model.addAttribute("user", user);
         model.addAttribute("snippets", snippetService.findByUserId(user.getId(), page, model));
     }
