@@ -158,3 +158,23 @@ hr {
 #post-btn {
     margin-right: 50px;
 }
+
+#no-public {
+    margin-top: 35px;
+    color: #fff;
+    font-size: 350px;
+}
+
+#no-public-title {
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#no-public-post {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}

@@ -51,7 +51,19 @@
 
 <div class="container">
     <div th:if="${#lists.isEmpty(snippet)}">
-        <!--TODO-->
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div>
+                <span id="no-public" class="material-symbols-outlined">
+                    public_off
+                </span>
+            </div>
+            <div>
+                <div id="no-public-title">No public snippets available :(</div>
+            </div>
+            <div>
+                <a id="no-public-post" href="/snippet/add">Be the first to post!</a>
+            </div>
+        </div>
     </div>
     <div th:if="${not #lists.isEmpty(snippet)}" th:each="snippet : ${snippets}">
         <div class="snippet-box">
