@@ -7,7 +7,10 @@ $(function() {
 });
 
 function deleteThis(element) {
-    snippet_id = element.getAttribute('data-snippet-id');
-    $('#snippetRemoveId').val(snippet_id);
-    $("form[name='delete']").submit();
+    let answer = confirm("Are you sure you want to delete this code?");
+    if(answer) {
+        snippet_id = element.getAttribute('data-snippet-id');
+        $('#snippetRemoveId').val(snippet_id);
+        $("form[name='delete']").submit();
+    }
 }
