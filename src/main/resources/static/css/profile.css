@@ -144,7 +144,7 @@ h2 {
   flex-wrap: wrap;
 }
 
-.snippetbutton button {
+.snippetbutton a {
   font-size: 15px;
   padding: 0 5px 0 5px;
   margin: 8px 1px 0 1px;

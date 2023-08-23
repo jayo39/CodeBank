@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/snippet")
@@ -60,6 +61,47 @@ public class SnippetController {
         snippet.setIsPublic("on".equals(isEnabled));
         int saveResult = snippetService.save(snippet, file);
         return "redirect:/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        User user = U.getLoggedUser();
+        Snippet snippet = snippetService.findById(id);
+        if(user.getId() != snippet.getUser().getId()) {
+            return "/user/rejectAuth";
+        }
+        model.addAttribute("snippet", snippet);
+        return "snippet/edit";
+    }
+
+    @PostMapping("/editOk")
+    public String editOk(@RequestParam("upfile") MultipartFile file
+            , @RequestParam(value = "isEnabled", required = false) String isEnabled
+            , @Valid Snippet snippet
+            , BindingResult result
+            , RedirectAttributes reAttr
+            , Model model) {
+        User user = U.getLoggedUser();
+        if (result.hasErrors()) {
+            System.out.println("there was an error???????" + result.getFieldErrors());
+            reAttr.addFlashAttribute("title", snippet.getTitle());
+            reAttr.addFlashAttribute("language", snippet.getLanguage());
+            reAttr.addFlashAttribute("code", snippet.getCode());
+            reAttr.addFlashAttribute("description", snippet.getDescription());
+            reAttr.addFlashAttribute("img", snippet.getImg());
+            List<FieldError> errList = result.getFieldErrors();
+            for(FieldError err : errList) {
+                reAttr.addFlashAttribute("error_" + err.getField(), err.getCode());
+            }
+            return "redirect:/snippet/edit/" + snippet.getId();
+        }
+        if (snippet.getTitle() == null || snippet.getTitle().length() == 0) {
+            snippet.setTitle("Untitled");
+        }
+        snippet.setUser(user);
+        snippet.setIsPublic("on".equals(isEnabled));
+        int saveResult = snippetService.save(snippet, file);
+        return "redirect:/user/profile";
     }
 
     @PostMapping("/upvote")

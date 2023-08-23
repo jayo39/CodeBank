@@ -55,8 +55,8 @@
                 <div class="snippet-description" th:text="${snippet.description}"></div>
             </div>
             <div class="snippetbutton">
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <a id="edit-btn" class="btn btn-primary" th:href="@{'/snippet/edit/' + ${snippet.id}}">Edit</a>
+                <a class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
