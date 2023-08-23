@@ -22,7 +22,7 @@ public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
         String errorMessage = null;
 
         if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
-            errorMessage = "Incorrect login credentials.";
+            errorMessage = "Incorrect email or password.";
         }
         //< account is disabled
         else if(exception instanceof DisabledException) {

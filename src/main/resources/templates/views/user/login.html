@@ -47,6 +47,9 @@
         Created account!
     </div>
     <h2 class="ubuntu">CodeBank</h2>
+    <div class="text-danger text-center" th:text="${errorMessage}">
+        <!--/* error msg */-->
+    </div>
     <form id="loginForm" th:action="@{/user/login}" method="POST">
         <div class="form-group">
             <label for="username">Email</label>
