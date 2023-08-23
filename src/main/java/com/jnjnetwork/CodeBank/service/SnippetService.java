@@ -10,6 +10,7 @@ import java.util.List;
 public interface SnippetService {
     void save(Snippet snippet);
     int save(Snippet snippet, MultipartFile file);
+    void deleteById(Long id);
     List<Snippet> findAll();
     List<Snippet> findPublic(String sort, Integer page, Model model);
     List<Snippet> findByUserId(Long id, Integer page, Model model);

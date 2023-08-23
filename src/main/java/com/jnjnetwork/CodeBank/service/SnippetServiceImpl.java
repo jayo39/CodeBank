@@ -52,6 +52,11 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
+    public void deleteById(Long id) {
+        snippetRepository.deleteById(id);
+    }
+
+    @Override
     public List<Snippet> findAll() {
         return snippetRepository.findAll();
     }

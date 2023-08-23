@@ -57,6 +57,8 @@ hr {
     font-family: 'Source Code Pro', monospace;
     color: #fff;
     display: flex;
+    width: 800px;
+    justify-content: end;
 }
 
 .snippet-flex {
@@ -119,7 +121,7 @@ hr {
 }
 
 .container {
-    margin-bottom: 50px;
+    margin-bottom: 120px;
 }
 
 .likeCount {
@@ -173,8 +175,9 @@ hr {
 }
 
 #no-public-post {
+    font-family: 'Ubuntu', sans-serif;
     margin-top: 15px;
     font-size: 20px;
-    color: #fff;
+    color: #FF8C00;
     font-weight: bold;
 }

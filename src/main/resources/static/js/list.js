@@ -1,8 +1,8 @@
 $(function() {
     var sortSelect = $('#sort');
     $(".snippet-description").each(function() {
-        if ($(this).text().length > 150) {
-        $(this).text($(this).text().substring(0, 150) + "...");
+        if ($(this).text().length > 94) {
+        $(this).text($(this).text().substring(0, 94) + "..");
         }
     });
     if (sort == "popular") {

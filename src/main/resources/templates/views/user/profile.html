@@ -56,15 +56,19 @@
             </div>
             <div class="snippetbutton">
                 <a id="edit-btn" class="btn btn-primary" th:href="@{'/snippet/edit/' + ${snippet.id}}">Edit</a>
-                <a class="btn btn-danger">Delete</a>
+                <a class="btn btn-danger" onclick="deleteThis(this)" th:attr="data-snippet-id=${snippet.id}">Delete</a>
             </div>
         </div>
     </div>
 </div>
+<form method="POST" th:action="@{/snippet/delete}" name="delete">
+    <input id="snippetRemoveId" type="hidden" name="snippet_id">
+</form>
 <th:block th:insert="~{component/pagination.html::pagination}"></th:block>
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="/js/profile.js"></script>
 </html>

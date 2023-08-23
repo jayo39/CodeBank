@@ -50,7 +50,7 @@
 
 
 <div class="container">
-    <div th:if="${#lists.isEmpty(snippet)}">
+    <div th:if="${#lists.isEmpty(snippets)}">
         <div class="d-flex justify-content-center flex-column align-items-center">
             <div>
                 <span id="no-public" class="material-symbols-outlined">
@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <div th:if="${not #lists.isEmpty(snippet)}" th:each="snippet : ${snippets}">
+    <div th:if="${not #lists.isEmpty(snippets)}" th:each="snippet : ${snippets}">
         <div class="snippet-box">
             <div class="snippet-flex">
                 <div th:class="'likecontainer_' + ${snippet.id} + ' ' + ${#arrays.contains(likedPosts, snippet.id) ? 'liked' : 'not-liked'} + ' ' + 'like-box'">

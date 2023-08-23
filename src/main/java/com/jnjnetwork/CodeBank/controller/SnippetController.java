@@ -104,6 +104,12 @@ public class SnippetController {
         return "redirect:/user/profile";
     }
 
+    @PostMapping("/delete")
+    public String deleteOk(@RequestParam("snippet_id") Long snippet_id) {
+        snippetService.deleteById(snippet_id);
+        return "redirect:/user/profile";
+    }
+
     @PostMapping("/upvote")
     @Transactional
     @ResponseBody

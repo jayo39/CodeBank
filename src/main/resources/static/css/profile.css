@@ -125,6 +125,8 @@ h2 {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Source Code Pro', monospace;
+  width: 210px;
+  word-wrap: break-word;
 }
 
 .snippet-desc-box {
@@ -153,3 +155,4 @@ h2 {
 #post-btn {
   margin-right: 50px;
 }
+
