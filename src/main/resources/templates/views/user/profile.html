@@ -41,8 +41,24 @@
         <a id="post-btn" class="btn btn-primary" href="/snippet/add">Post Snippet</a>
     </div>
 </div>
-
-<div class="mysnippet d-flex justify-content-center">
+<div class="container">
+    <div th:if="${#lists.isEmpty(snippets)}">
+        <div id="no-post-container" class="d-flex justify-content-center flex-column align-items-center">
+            <div>
+            <span id="no-post" class="material-symbols-outlined">
+                search_off
+            </span>
+            </div>
+            <div>
+                <div id="no-post-title">You don't have any posted snippets</div>
+            </div>
+            <div>
+                <a id="no-post-post" href="/snippet/add">Post your first code!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mysnippet d-flex justify-content-center" th:if="${not #lists.isEmpty(snippets)}">
     <div class="snippet-wrap" th:each="snippet : ${snippets}">
         <div class="snippet-flex">
             <div>
