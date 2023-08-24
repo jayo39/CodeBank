@@ -136,10 +136,26 @@ h2 {
   align-items: center;
 }
 
-.badge {
+.lang-badge {
   background-color: #FF8C00;
-  min-width: 90px;
-  max-width: 90px;
+  min-width: 85px;
+  max-width: 85px;
+  margin: 0 3px 0 3px;
+}
+
+.private-badge {
+  background-color: #DD4ADD;
+  margin: 0 3px 0 3px;
+  max-height: 20px;
+  min-width: 35px;
+  max-width: 35px;
+  padding: 0px;
+}
+
+.private-icon {
+  display: block;
+  margin-top: 1px;
+  font-size: 18px;
 }
 
 .mysnippet {

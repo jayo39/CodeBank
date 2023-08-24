@@ -72,7 +72,14 @@
                 <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
             </div>
             <div class="snippet-desc-box">
-                <div class="badge badge-pill" th:text="${snippet.language}"></div>
+                <div class="d-flex justify-content-center">
+                    <div class="badge lang-badge badge-pill" th:text="${snippet.language}"></div>
+                    <div class="badge private-badge badge-pill" th:if="${not snippet.isPublic}">
+                        <span class="material-symbols-outlined private-icon">
+                            lock
+                        </span>
+                    </div>
+                </div>
                 <div class="snippet-title" th:text="${snippet.title}"></div>
                 <div class="snippet-description" th:text="${snippet.description}"></div>
             </div>
