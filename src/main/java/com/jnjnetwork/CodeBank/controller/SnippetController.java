@@ -35,6 +35,7 @@ public class SnippetController {
     public void add() {;}
 
     @PostMapping("/add")
+    @Transactional
     public String addOk(@RequestParam("upfile") MultipartFile file
             , @RequestParam(value = "isEnabled", required = false) String isEnabled
             , @Valid Snippet snippet
@@ -75,6 +76,7 @@ public class SnippetController {
     }
 
     @PostMapping("/editOk")
+    @Transactional
     public String editOk(@RequestParam("upfile") MultipartFile file
             , @RequestParam(value = "isEnabled", required = false) String isEnabled
             , @Valid Snippet snippet
@@ -105,6 +107,7 @@ public class SnippetController {
     }
 
     @PostMapping("/delete")
+    @Transactional
     public String deleteOk(@RequestParam("snippet_id") Long snippet_id) {
         snippetService.deleteById(snippet_id);
         return "redirect:/user/profile";

@@ -48,4 +48,16 @@ public class User extends CreatedTimeEntity{
             Collections.addAll(this.roles, roles);
         }
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_follows",
+            joinColumns = @JoinColumn(name = "follower_id"),
+            inverseJoinColumns = @JoinColumn(name = "followee_id")
+    )
+    private List<User> following = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "following")
+    private List<User> followers = new ArrayList<>();
+
 }
