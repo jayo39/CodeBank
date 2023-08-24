@@ -1,6 +1,8 @@
 var editor;
 var language = '';
 var value = '';
+var current_code = null;
+var current_lang = null;
 
 $(function() {
     require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.24.0/min/vs' } });
@@ -17,8 +19,9 @@ $(function() {
             var value = editor.getValue();
             document.getElementById('textInput').value = value;
         });
+
         if(current_lang !== null && current_code !== null) {
-            language = current_lang;
+            language = current_lang.toLowerCase();
             monaco.editor.setModelLanguage(editor.getModel(), language);
             value = current_code;
             editor.getModel().setValue(value);
@@ -28,6 +31,6 @@ $(function() {
 
 
 function changeLanguage(selectElement) {
-    language = selectElement.value;
+    language = selectElement.value.toLowerCase();
     monaco.editor.setModelLanguage(editor.getModel(), language);
 }
