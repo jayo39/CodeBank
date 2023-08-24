@@ -46,7 +46,7 @@
 <div class="d-flex justify-content-center">
     <a href="/list" class="btn btn-danger bottom-btn">Back to list</a>
     <div sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
-        <a href="" class="btn btn-success bottom-btn" th:if="${snippet.user.id == logged_user.id}">Edit code</a>
+        <a th:href="@{'/snippet/edit/' + ${snippet.id}}" class="btn btn-success bottom-btn" th:if="${snippet.user.id == logged_user.id}">Edit code</a>
     </div>
 </div>
 

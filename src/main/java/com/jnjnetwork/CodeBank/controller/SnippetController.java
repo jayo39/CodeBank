@@ -110,7 +110,7 @@ public class SnippetController {
         snippet.setUser(user);
         snippet.setIsPublic("on".equals(isEnabled));
         int saveResult = snippetService.save(snippet, file);
-        return "redirect:/user/profile";
+        return "redirect:/snippet/detail/" + snippet.getId();
     }
 
     @PostMapping("/delete")
