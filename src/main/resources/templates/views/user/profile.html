@@ -18,7 +18,13 @@
 <div id="first-container">
     <div class="profile-container">
         <div id="profile-image">
-            <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+            <input id="profile-upload" type="file">
+            <a id="image-wrap">
+                <div id="click-profile">
+                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+                </div>
+                <div id="upload-info">Upload image</div>
+            </a>
             <div class="profile-bio" th:text="${user.email}"></div>
         </div>
         <div id="profile-info">

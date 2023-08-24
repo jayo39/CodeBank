@@ -1,9 +1,26 @@
 $(function() {
+    var profileUpload = $('#profile-upload');
+    var profileClick = $('#image-wrap');
     $(".snippet-description").each(function() {
         if ($(this).text().length > 60) {
             $(this).text($(this).text().substring(0, 60) + "..")
         }
     });
+    profileClick.on("click", function(event) {
+        event.preventDefault();
+        profileUpload.click();
+    });
+
+    profileClick.hover(
+        function() {
+            $('#click-profile').css("opacity", 0.7);
+            $('#upload-info').css("opacity", 1);
+        },
+        function () {
+            $('#click-profile').css("opacity", 1);
+            $('#upload-info').css("opacity", 0);
+        }
+    );
 });
 
 function deleteThis(element) {

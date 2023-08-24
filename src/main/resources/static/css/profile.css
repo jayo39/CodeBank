@@ -157,7 +157,7 @@ h2 {
 }
 
 #no-post {
-    margin-top 50px;
+    margin-top: 30px;
     color: #fff;
     font-size: 350px;
 }
@@ -185,3 +185,21 @@ h2 {
     margin-bottom: 100px;
 }
 
+#profile-upload {
+  display: none;
+}
+
+#click-profile {
+  transition: opacity 0.3s;
+}
+
+#image-wrap {
+  cursor: pointer;
+}
+
+#upload-info {
+  position: absolute;
+  margin: -91px 0 0 25px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
