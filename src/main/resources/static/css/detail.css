@@ -11,7 +11,8 @@ body {
 }
 
 #title {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: bold;
   font-size: 35px;
   color: #fff;
 }
