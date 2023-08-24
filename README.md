@@ -5,8 +5,9 @@ CodeBank is a web platform designed for users to share, store, and discover code
 ## Features
 
 - Share and save code snippets with ease.
+- Manage and like posts.
+- Follow users and view their uploads.
 - Manage users and posts through administrative tools.
-- Follow users and like posts.
 
 ## Technologies Used
 
