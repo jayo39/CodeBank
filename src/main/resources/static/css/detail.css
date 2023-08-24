@@ -72,8 +72,8 @@ body {
   margin-top: 3px;
 }
 
-#goback {
-  margin: 50px 0 40px 0;
+.bottom-btn {
+  margin: 50px 10px 40px 10px;
 }
 
 .badge {

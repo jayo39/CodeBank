@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,10 @@
     </button>
 </div>
 <div class="d-flex justify-content-center">
-    <a href="/list" id="goback" class="btn btn-danger">Back to list</a>
+    <a href="/list" class="btn btn-danger bottom-btn">Back to list</a>
+    <div sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
+        <a href="" class="btn btn-success bottom-btn" th:if="${snippet.user.id == logged_user.id}">Edit code</a>
+    </div>
 </div>
 
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
