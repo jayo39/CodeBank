@@ -19,10 +19,6 @@
     <title>CodeBank</title>
 </head>
 <body>
-<script th:inline="javascript">
-    var current_lang = [[${snippet.language}]];
-    var current_code = [[${snippet.code}]];
-</script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 
 <div class="container mt-5">
@@ -75,4 +71,8 @@
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>
 <script src="/js/add.js"></script>
+<script th:inline="javascript">
+    current_lang = [[${snippet.language}]];
+    current_code = [[${snippet.code}]];
+</script>
 </html>

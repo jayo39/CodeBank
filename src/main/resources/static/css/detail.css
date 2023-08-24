@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  background: linear-gradient(-45deg, #6f1451, #BD1E86);
+  width: 100%;
+  height: 100vh;
+}
+
+#title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 35px;
+  color: #fff;
+}
+
+#title-sub {
+  margin: 30px 0 0 50px;
+}
+
+#credit {
+  margin: 25px 50px 0 0;
+  width: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+#profilename {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 20px;
+  color: #fff;
+}
+
+#profileimg {
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 30px;
+  max-height: 30px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 1px #aa438c solid;
+  object-fit: cover;
+}
+
+#description {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 50px;
+  width: 630px;
+}
+
+#editor {
+  border: 2px solid #af4c8b;
+  margin: 30px 50px 0 50px;
+  height: 300px;
+}
+
+#buttons {
+  margin-right: 50px;
+}
+
+#copybtn {
+  border-radius: 0 0 5px 5px;
+}
+
+#copyicon {
+  font-size: 20px;
+  margin-top: 3px;
+}
+
+#goback {
+  margin-top: 40px;
+}
+
+.badge {
+  background-color: #FF8C00;
+  min-width: 90px;
+  max-width: 90px;
+  margin-left: 10px;
+}

@@ -64,6 +64,13 @@ public class SnippetController {
         return "redirect:/list";
     }
 
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable Long id, Model model) {
+        Snippet snippet = snippetService.findById(id);
+        model.addAttribute("snippet", snippet);
+        return "snippet/detail";
+    }
+
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
         User user = U.getLoggedUser();
