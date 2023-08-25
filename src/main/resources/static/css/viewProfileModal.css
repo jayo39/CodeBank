@@ -37,3 +37,8 @@
     border: 1px solid #888;
     width: 30%;
 }
+
+.follow-icon {
+    margin-left: 5px;
+    font-size: 20px;
+}
