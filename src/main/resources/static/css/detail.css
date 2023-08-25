@@ -33,6 +33,7 @@ body {
 #clickname {
   transition: color 0.3s;
   text-decoration: none;
+  cursor: pointer;
   color: #fff;
 }
 

@@ -1,4 +1,3 @@
-// Register modal
 const modal = $('#myModal');
 const closeButton = $('.close');
 

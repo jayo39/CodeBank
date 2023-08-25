@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="viewProfile">
+    <div id="profileModal" class="modal">
+        <div class="d-flex justify-content-center flex-column align-items-center modal-content">
+            <div id="image-wrap">
+                <div id="click-profile">
+                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+                </div>
+            </div>
+            <div id="profile-info">
+                <div id="profile-name">asdasdasd</div>
+                <div>Followers: [[${followerNum}]]</div>
+                <div>Following: [[${followingNum}]]</div>
+            </div>
+        </div>
+    </div>
+</th:block>

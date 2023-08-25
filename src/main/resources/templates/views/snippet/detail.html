@@ -11,6 +11,7 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/detail.css" rel="stylesheet">
+    <link href="/css/viewProfileModal.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.24.0/min/vs/loader.js"></script>
@@ -23,6 +24,7 @@
     var set_code = [[${snippet.code}]];
 </script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
+<th:block th:insert="~{component/viewProfile.html::viewProfile}"></th:block>
 
 <div id="title-container">
     <div id="title-sub" class="d-flex align-items-center">
@@ -30,7 +32,7 @@
         <div class="badge badge-pill" th:text="${snippet.language}"></div>
     </div>
     <div id="post-credit">
-        <div id="profilename">Posted by <a id="clickname" th:href="@{'/user/followers/' + ${snippet.user.id}}" th:text="${snippet.user.name}"></a></div>
+        <div id="profilename">Posted by <a id="clickname" onclick="openModal()" th:text="${snippet.user.name}"></a></div>
         <img id="profileimg" src="/image/default_profile.png">
     </div>
 </div>
@@ -54,4 +56,5 @@
 </body>
 
 <script src="/js/detail.js"></script>
+<script src="/js/viewProfileModal.js"></script>
 </html>
