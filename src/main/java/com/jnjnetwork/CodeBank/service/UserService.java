@@ -12,4 +12,5 @@ public interface UserService {
     int register(User user);
     long countUserTotal();
     List<Role> selectRolesById(Long id);
+    User findById(Long id);
 }

@@ -23,10 +23,21 @@ body {
 
 #post-credit {
   margin: 25px 50px 0 0;
-  width: 430px;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: end;
+  text-decoration: none;
+}
+
+#clickname {
+  transition: color 0.3s;
+  text-decoration: none;
+  color: #fff;
+}
+
+#clickname:hover {
+  color: #43aa8c;
 }
 
 #profilename {

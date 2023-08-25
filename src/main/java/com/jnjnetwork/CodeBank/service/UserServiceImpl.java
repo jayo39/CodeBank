@@ -65,4 +65,9 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
         return user.getRoles();
     }
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
 }

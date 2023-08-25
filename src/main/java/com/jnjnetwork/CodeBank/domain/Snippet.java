@@ -2,7 +2,6 @@ package com.jnjnetwork.CodeBank.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.util.ArrayList;
 import java.util.List;

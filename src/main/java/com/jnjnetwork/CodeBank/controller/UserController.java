@@ -8,6 +8,7 @@ import com.jnjnetwork.CodeBank.util.U;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.support.CustomSQLErrorCodesTranslation;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -72,8 +73,19 @@ public class UserController {
         return ResponseEntity.ok("User registered successfully");
     }
 
+    @GetMapping("/followers/{id}")
+    public String followers(@PathVariable Long id, Model model) {
+        User user = userService.findById(id);
+        List<User> followers = user.getFollowers();
+        List<User> following = user.getFollowing();
+        model.addAttribute("followers", followers);
+        model.addAttribute("following", following);
+        return "user/followers";
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(new UserValidator());
     }
+
 }

@@ -30,7 +30,7 @@
         <div class="badge badge-pill" th:text="${snippet.language}"></div>
     </div>
     <div id="post-credit">
-        <div id="profilename">Posted by [[${snippet.user.name}]]</div>
+        <div id="profilename">Posted by <a id="clickname" th:href="@{'/user/followers/' + ${snippet.user.id}}" th:text="${snippet.user.name}"></a></div>
         <img id="profileimg" src="/image/default_profile.png">
     </div>
 </div>

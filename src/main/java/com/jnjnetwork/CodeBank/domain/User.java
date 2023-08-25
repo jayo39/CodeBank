@@ -60,4 +60,9 @@ public class User extends CreatedTimeEntity{
     @ManyToMany(mappedBy = "following")
     private List<User> followers = new ArrayList<>();
 
+    public List<User> getFollowers(){
+        List<User> filteredFollowers = new ArrayList<>(followers);
+        filteredFollowers.remove(this);
+        return filteredFollowers;
+    }
 }

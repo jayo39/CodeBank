@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  background: linear-gradient(-45deg, #6f1451, #BD1E86);
+  width: 100%;
+}
+
+.title {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+  color: #fff;
+  margin-top: 30px;
+}
+
+hr {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#no-follow {
+    color: #fff;
+    font-size: 350px;
+}
+
+#no-follow-title {
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff;
+    font-size: 25px;
+    margin-top: -30px;
+    font-weight: bold;
+}
+
+#no-follow-back {
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 15px;
+    font-size: 20px;
+    color: #FF8C00;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#no-follow-wrap {
+    margin: 50px 0 100px 0;
+}
