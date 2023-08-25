@@ -11,9 +11,9 @@
                 </div>
             </div>
             <div id="profile-info">
-                <div id="profile-name">asdasdasd</div>
-                <div>Followers: [[${followerNum}]]</div>
-                <div>Following: [[${followingNum}]]</div>
+                <div id="profile-name" th:text="${snippet.user.name}"></div>
+                <div>Followers: <span th:text="${#lists.size(snippet.user.followers)}"></span></div>
+                <div>Following: <span th:text="${#lists.size(snippet.user.following)}"></span></div>
             </div>
             <div>
                 <button class="btn btn-primary d-flex align-items-center">
