@@ -43,6 +43,11 @@ public class UserController {
     @GetMapping("/profile")
     public void profile(Integer page, Model model) {
         User user = U.getLoggedUser();
+        User profileUser = userService.findById(user.getId());
+        int followerNum = profileUser.getFollowers().size();
+        int followingNum = profileUser.getFollowing().size();
+        model.addAttribute("followerNum", followingNum);
+        model.addAttribute("followingNum", followingNum);
         model.addAttribute("user", user);
         model.addAttribute("snippets", snippetService.findByUserId(user.getId(), page, model));
     }

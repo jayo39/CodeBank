@@ -52,8 +52,12 @@
 
         <div class="my-3">
             <div id="files">
-                <div class="input-group mb-2">
-                    <input id="fileinput" class="col-xs-3 form-control" type="file" name="upfile"/>
+                <div class="input-group mb-2 d-flex flex-column">
+                    <div id="image-input" class="d-flex align-items-center">
+                        <input th:if="${not #strings.isEmpty(snippet.img)}" class="fileinput hasImage col-xs-3" type="text" readonly th:value="${snippet.img}">
+                        <button th:if="${not #strings.isEmpty(snippet.img)}" class="btn btn-danger replace" onclick="changeImage()">X</button>
+                        <input th:if="${#strings.isEmpty(snippet.img)}" class="fileinput col-xs-3 form-control" type="file" name="upfile"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,6 +75,7 @@
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>
 <script src="/js/add.js"></script>
+<script src="/js/changeSnippetImage.js"></script>
 <script th:inline="javascript">
     current_lang = [[${snippet.language}]];
     current_code = [[${snippet.code}]];

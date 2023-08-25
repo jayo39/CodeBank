@@ -83,15 +83,15 @@ public class SnippetController {
 
     @PostMapping("/editOk")
     @Transactional
-    public String editOk(@RequestParam("upfile") MultipartFile file
+    public String editOk(@RequestParam(name = "upfile", required = false) MultipartFile file
             , @RequestParam(value = "isEnabled", required = false) String isEnabled
             , @Valid Snippet snippet
             , BindingResult result
             , RedirectAttributes reAttr
             , Model model) {
         User user = U.getLoggedUser();
+        Snippet originalSnippet = snippetService.findById(snippet.getId());
         if (result.hasErrors()) {
-            System.out.println("there was an error???????" + result.getFieldErrors());
             reAttr.addFlashAttribute("title", snippet.getTitle());
             reAttr.addFlashAttribute("language", snippet.getLanguage());
             reAttr.addFlashAttribute("code", snippet.getCode());
@@ -103,12 +103,17 @@ public class SnippetController {
             }
             return "redirect:/snippet/edit/" + snippet.getId();
         }
+        snippet.setUser(user);
+        snippet.setIsPublic("on".equals(isEnabled));
         if (snippet.getTitle() == null || snippet.getTitle().length() == 0) {
             snippet.setTitle("Untitled");
         }
-        snippet.setUser(user);
-        snippet.setIsPublic("on".equals(isEnabled));
-        int saveResult = snippetService.save(snippet, file);
+        if (file == null) {
+            snippet.setImg(originalSnippet.getImg());
+            snippetService.save(snippet);
+            return "redirect:/snippet/detail/" + snippet.getId();
+        }
+        snippetService.save(snippet, file);
         return "redirect:/snippet/detail/" + snippet.getId();
     }
 

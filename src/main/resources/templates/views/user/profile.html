@@ -29,8 +29,8 @@
         </div>
         <div id="profile-info">
             <div class="profile-name" th:text="${user.name}"></div>
-            <div class="profile-bio">Followers: #</div>
-            <div class="profile-bio">Following: #</div>
+            <div class="profile-bio">Followers: [[${followerNum}]]</div>
+            <div class="profile-bio">Following: [[${followingNum}]]</div>
         </div>
     </div>
 </div>
