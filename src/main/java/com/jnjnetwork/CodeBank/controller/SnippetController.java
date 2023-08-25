@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,12 @@ public class SnippetController {
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model) {
         Snippet snippet = snippetService.findById(id);
+        List<Long> followerIdList = new ArrayList<>();
+        for(var user : snippet.getUser().getFollowers()) {
+            followerIdList.add(user.getId());
+        }
         model.addAttribute("snippet", snippet);
+        model.addAttribute("followerIdList", followerIdList);
         return "snippet/detail";
     }
 

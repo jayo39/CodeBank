@@ -70,4 +70,9 @@ public class UserServiceImpl implements UserService{
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(RuntimeException::new);
     }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

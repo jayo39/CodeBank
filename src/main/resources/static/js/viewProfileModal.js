@@ -13,3 +13,23 @@ function openModal() {
 function closeModal() {
     modal.css('display', 'none');
 }
+
+$('.follow-click').click(function() {
+    var logged_user = $('#logged_user').val();
+    var post_user = $('#post_user').val();
+
+    const data = {
+        "logged_userId": logged_user,
+        "post_userId": post_user,
+    };
+
+    $.ajax({
+        url: "/user/followOk",
+        type: "POST",
+        data: data,
+        cache: false,
+        success: function(data, status, xhr) {
+            console.log("success?")
+        }
+    });
+})

@@ -88,6 +88,26 @@ public class UserController {
         return "user/followers";
     }
 
+    @PostMapping("/followOk")
+    @Transactional
+    @ResponseBody
+    public ResponseEntity<String> followOk(@RequestParam("logged_userId") Long logged_id, @RequestParam("post_userId") Long post_userId) {
+        User follower = userService.findById(logged_id);
+        User followee = userService.findById(post_userId);
+
+        if(followee.getFollowers().contains(follower)) {
+            followee.getFollowers().remove(follower);
+            follower.getFollowing().remove(followee);
+        } else {
+            followee.getFollowers().add(follower);
+            follower.getFollowing().add(followee);
+        }
+
+        userService.save(follower);
+        userService.save(followee);
+        return ResponseEntity.ok("Followed!");
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(new UserValidator());

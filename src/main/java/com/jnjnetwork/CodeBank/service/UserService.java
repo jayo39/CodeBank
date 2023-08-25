@@ -13,4 +13,5 @@ public interface UserService {
     long countUserTotal();
     List<Role> selectRolesById(Long id);
     User findById(Long id);
+    void save(User user);
 }
