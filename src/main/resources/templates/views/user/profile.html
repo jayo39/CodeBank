@@ -84,6 +84,7 @@
                 <div class="snippet-description" th:text="${snippet.description}"></div>
             </div>
             <div class="snippetbutton">
+                <a class="btn btn-success" th:href="@{'/snippet/detail/' + ${snippet.id}}">View</a>
                 <a id="edit-btn" class="btn btn-primary" th:href="@{'/snippet/edit/' + ${snippet.id}}">Edit</a>
                 <a class="btn btn-danger" onclick="deleteThis(this)" th:attr="data-snippet-id=${snippet.id}">Delete</a>
             </div>
