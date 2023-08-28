@@ -4,10 +4,10 @@ $(function() {
         localStorage.removeItem('registrationSuccess');
     }
     $('#register').click(function() {
-        const email = $("input[name='email']").val().trim();
-        const name = $("input[name='name']").val().trim();
-        const password = $("input[name='password']").val().trim();
-        const password_confirm = $("input[name='password-confirm']").val().trim();
+        var email = $("input[name='email']").val().trim();
+        var name = $("input[name='name']").val().trim();
+        var password = $("input[name='password']").val().trim();
+        var password_confirm = $("input[name='password-confirm']").val().trim();
 
         if(!email) {
             $("#email").focus();

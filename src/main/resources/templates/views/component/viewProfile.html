@@ -3,6 +3,10 @@
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <th:block th:fragment="viewProfile">
+    <script th:inline="javascript" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
+        var current_userId = [[${logged_user.id}]];
+        var snippet_userId = [[${snippet.user.id}]];
+    </script>
     <div id="profileModal" class="modal">
         <div class="d-flex justify-content-center flex-column align-items-center modal-content">
             <div id="image-wrap">
@@ -12,8 +16,8 @@
             </div>
             <div id="profile-info">
                 <div id="profile-name" th:text="${snippet.user.name}"></div>
-                <div>Followers: <span th:text="${#lists.size(snippet.user.followers)}"></span></div>
-                <div>Following: <span th:text="${#lists.size(snippet.user.following)}"></span></div>
+                <div>Followers: <span id="follower-num" th:text="${#lists.size(snippet.user.followers)}"></span></div>
+                <div>Following: <span id="following-num" th:text="${#lists.size(snippet.user.following)}"></span></div>
             </div>
             <div>
                 <button id="follow-click" class="btn btn-primary d-flex align-items-center disabled" sec:authorize="isAnonymous()">
@@ -22,26 +26,28 @@
                         person_check
                     </span>
                 </button>
-                <div sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
+                <div id="follow-buttons" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
                     <button class="btn btn-primary d-flex align-items-center disabled" th:if="${snippet.user.id == logged_user.id}">
                         <span>Follow</span>
                         <span class="material-symbols-outlined follow-icon">
-                        person_check
-                    </span>
+                            person_check
+                        </span>
                     </button>
                     <button class="follow-click btn btn-primary d-flex align-items-center" th:if="${(snippet.user.id != logged_user.id) && (not #lists.contains(followerIdList, logged_user.id))}">
                         <span>Follow</span>
                         <span class="material-symbols-outlined follow-icon">
-                        person_check
-                    </span>
-                        <input id="logged_user" type="hidden" th:value="${logged_user.id}">
-                        <input id="post_user" type="hidden" th:value="${snippet.user.id}">
+                            person_check
+                        </span>
+                        <input class="logged_user" type="hidden" th:value="${logged_user.id}">
+                        <input class="post_user" type="hidden" th:value="${snippet.user.id}">
                     </button>
                     <button class="follow-click btn btn-danger d-flex align-items-center" th:if="${(snippet.user.id != logged_user.id) && (#lists.contains(followerIdList, logged_user.id))}">
                         <span>Unfollow</span>
                         <span class="material-symbols-outlined follow-icon">
-                        person_remove
-                    </span>
+                            person_remove
+                        </span>
+                        <input class="logged_user" type="hidden" th:value="${logged_user.id}">
+                        <input class="post_user" type="hidden" th:value="${snippet.user.id}">
                     </button>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import com.jnjnetwork.CodeBank.domain.UserValidator;
 import com.jnjnetwork.CodeBank.service.SnippetService;
 import com.jnjnetwork.CodeBank.service.UserService;
 import com.jnjnetwork.CodeBank.util.U;
+import jakarta.persistence.EntityManager;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,16 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    EntityManager entityManager;
     @Autowired
     UserService userService;
     @Autowired
@@ -46,7 +51,7 @@ public class UserController {
         User profileUser = userService.findById(user.getId());
         int followerNum = profileUser.getFollowers().size();
         int followingNum = profileUser.getFollowing().size();
-        model.addAttribute("followerNum", followingNum);
+        model.addAttribute("followerNum", followerNum);
         model.addAttribute("followingNum", followingNum);
         model.addAttribute("user", user);
         model.addAttribute("snippets", snippetService.findByUserId(user.getId(), page, model));
@@ -91,21 +96,27 @@ public class UserController {
     @PostMapping("/followOk")
     @Transactional
     @ResponseBody
-    public ResponseEntity<String> followOk(@RequestParam("logged_userId") Long logged_id, @RequestParam("post_userId") Long post_userId) {
+    public Map<String, Object> followOk(@RequestParam("logged_userId") Long logged_id, @RequestParam("post_userId") Long post_userId) {
         User follower = userService.findById(logged_id);
         User followee = userService.findById(post_userId);
+        Map<String, Object> response = new HashMap<>();
 
         if(followee.getFollowers().contains(follower)) {
             followee.getFollowers().remove(follower);
             follower.getFollowing().remove(followee);
+            response.put("followStatus", "unfollow");
         } else {
             followee.getFollowers().add(follower);
             follower.getFollowing().add(followee);
+            response.put("followStatus", "follow");
         }
 
         userService.save(follower);
         userService.save(followee);
-        return ResponseEntity.ok("Followed!");
+        entityManager.flush();
+        entityManager.clear();
+        response.put("followerCount", userService.findById(post_userId).getFollowers().size());
+        return response;
     }
 
     @InitBinder
