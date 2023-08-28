@@ -11,32 +11,77 @@
     <title>CodeBank</title>
 </head>
 <body>
+<script th:inline="javascript">
+    var listType = [[${list}]];
+</script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
-<div class="d-flex justify-content-center mt-4">
-    <div class="d-flex input-group w-50">
-        <input class="form-control" type="search" placeholder="Search user" aria-label="Search" name="searchedValue">
-        <button id="productSearch" class="btn btn-primary" type="submit">Search</button>
+<div id="wrap">
+    <div class="d-flex justify-content-center" id="user-title">[[${user.name}]]'s</div>
+    <div class="d-flex justify-content-evenly">
+        <h2 id="followers" class="title">Followers</h2>
+        <h2 id="following" class="title">Following</h2>
     </div>
-</div>
+    <hr>
 
-<div class="d-flex justify-content-evenly">
-    <div class="title">Followers</div>
-    <div class="title">Following</div>
-</div>
-<hr>
+    <!-- Followers List -->
+    <div class="no-follow-wrap followersBlock" th:if="${#lists.isEmpty(followers)}">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div>
+                <span class="no-follow material-symbols-outlined">
+                    person_cancel
+                </span>
+            </div>
+            <div>
+                <div class="no-follow-title">No users could be found</div>
+            </div>
+            <div>
+                <a class="no-follow-back" onclick="goBack()">Go back</a>
+            </div>
+        </div>
+    </div>
+    <div class="follow-wrap followersBlock" th:if="${not #lists.isEmpty(followers)}">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div th:each="follower : ${followers}" class="user-info-wrap">
+                <div class="d-flex align-items-center">
+                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+                    <div class="user-info d-flex flex-column">
+                        <div th:text="${follower.name}"></div>
+                        <div th:text="${follower.email}"></div>
+                    </div>
+                    <button class="btn btn-outline-primary">Follow</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div id="no-follow-wrap" th:if="${#lists.isEmpty(followers)}">
-    <div class="d-flex justify-content-center flex-column align-items-center">
-        <div>
-            <span id="no-follow" class="material-symbols-outlined">
-                person_cancel
-            </span>
+    <!-- Following List -->
+    <div class="no-follow-wrap followingBlock" th:if="${#lists.isEmpty(following)}">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div>
+                <span class="no-follow material-symbols-outlined">
+                    person_cancel
+                </span>
+            </div>
+            <div>
+                <div class="no-follow-title">No users could be found</div>
+            </div>
+            <div>
+                <a class="no-follow-back" onclick="goBack()">Go back</a>
+            </div>
         </div>
-        <div>
-            <div id="no-follow-title">No users could be found</div>
-        </div>
-        <div>
-            <a id="no-follow-back" onclick="goBack()">Go back</a>
+    </div>
+    <div class="follow-wrap followingBlock" th:if="${not #lists.isEmpty(following)}">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div th:each="follower : ${following}" class="user-info-wrap">
+                <div class="d-flex align-items-center">
+                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+                    <div class="user-info d-flex flex-column">
+                        <div th:text="${follower.name}"></div>
+                        <div th:text="${follower.email}"></div>
+                    </div>
+                    <button class="btn btn-outline-primary">Follow</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

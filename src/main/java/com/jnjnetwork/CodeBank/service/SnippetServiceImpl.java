@@ -117,8 +117,9 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
-    public List<Snippet> findByUserId(Long id, Integer page, Model model) {
+    public List<Snippet> findByUserId(Long id, Boolean isPublic, Integer page, Model model) {
         Sort sort = Sort.by(Sort.Order.desc("regDate"));
+        Page<Snippet> pageWrites;
         // default page is 1
         if(page == null) page = 1;
         if(page < 1) page = 1;
@@ -131,7 +132,11 @@ public class SnippetServiceImpl implements SnippetService{
         // set current page in session
         session.setAttribute("page", page);
 
-        Page<Snippet> pageWrites = snippetRepository.findByUserId(id, PageRequest.of(page - 1, pageRows, sort));
+        if(isPublic) {
+            pageWrites = snippetRepository.findByUserIdAndIsPublic(id, isPublic, PageRequest.of(page - 1, pageRows, sort));
+        } else {
+            pageWrites = snippetRepository.findByUserId(id, PageRequest.of(page - 1, pageRows, sort));
+        }
 
         long cnt = pageWrites.getTotalElements();
         int totalPage =  pageWrites.getTotalPages();

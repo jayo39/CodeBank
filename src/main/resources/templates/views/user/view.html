@@ -18,16 +18,10 @@
 <div id="first-container">
     <div class="profile-container">
         <div id="profile-image">
-            <input id="profile-upload" type="file">
-            <a id="image-wrap">
-                <div id="click-profile">
-                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
-                </div>
-                <div id="upload-info">Upload image</div>
-            </a>
+            <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
             <div class="profile-bio" th:text="${user.email}"></div>
         </div>
-        <div id="profile-info">
+        <div id="profile-info" class="d-flex flex-column align-items-center">
             <div class="profile-name" th:text="${user.name}"></div>
             <div class="profile-bio">
                 <a th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
@@ -49,14 +43,11 @@
 <hr>
 <div class="d-flex justify-content-between align-items-center">
     <div>
-        <h2>My Snippets
+        <h2>[[${user.name}]]'s Snippets
             <span class="material-symbols-outlined my-snippet">
                 deployed_code
             </span>
         </h2>
-    </div>
-    <div>
-        <a id="post-btn" class="btn btn-primary" href="/snippet/add">Post Snippet</a>
     </div>
 </div>
 <div class="container">
@@ -68,10 +59,10 @@
             </span>
             </div>
             <div>
-                <div id="no-post-title">You haven't posted any snippets :(</div>
+                <div id="no-post-title">This user hasn't posted any snippets :(</div>
             </div>
             <div>
-                <a id="no-post-post" href="/snippet/add">Post your first code!</a>
+                <a id="no-post-post" href="/list">Find available snippets!</a>
             </div>
         </div>
     </div>
@@ -86,31 +77,20 @@
             <div class="snippet-desc-box">
                 <div class="d-flex justify-content-center">
                     <div class="badge lang-badge badge-pill" th:text="${snippet.language}"></div>
-                    <div class="badge private-badge badge-pill" th:if="${not snippet.isPublic}">
-                        <span class="material-symbols-outlined private-icon">
-                            lock
-                        </span>
-                    </div>
                 </div>
                 <div class="snippet-title" th:text="${snippet.title}"></div>
                 <div class="snippet-description" th:text="${snippet.description}"></div>
             </div>
             <div class="snippetbutton">
                 <a class="btn btn-success" th:href="@{'/snippet/detail/' + ${snippet.id}}">View</a>
-                <a id="edit-btn" class="btn btn-primary" th:href="@{'/snippet/edit/' + ${snippet.id}}">Edit</a>
-                <a class="btn btn-danger" onclick="deleteThis(this)" th:attr="data-snippet-id=${snippet.id}">Delete</a>
             </div>
         </div>
     </div>
 </div>
-<form method="POST" th:action="@{/snippet/delete}" name="delete">
-    <input id="snippetRemoveId" type="hidden" name="snippet_id">
-</form>
 <th:block th:insert="~{component/pagination.html::pagination}"></th:block>
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="/js/profile.js"></script>
 </html>

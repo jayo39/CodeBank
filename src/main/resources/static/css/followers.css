@@ -2,26 +2,36 @@ body {
   margin: 0;
   background: linear-gradient(-45deg, #6f1451, #BD1E86);
   width: 100%;
+  min-height: 100vh;
+}
+
+#wrap {
+  min-height: 83vh;
 }
 
 .title {
   font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
-  font-size: 35px;
+  font-size: 25px;
   color: #fff;
-  margin-top: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.title:hover {
+  color: #43aa8c;
 }
 
 hr {
   color: rgba(255, 255, 255, 0.8);
 }
 
-#no-follow {
+.no-follow {
     color: #fff;
     font-size: 350px;
 }
 
-#no-follow-title {
+.no-follow-title {
     font-family: 'Ubuntu', sans-serif;
     color: #fff;
     font-size: 25px;
@@ -29,16 +39,61 @@ hr {
     font-weight: bold;
 }
 
-#no-follow-back {
+.no-follow-back {
     font-family: 'Ubuntu', sans-serif;
     margin-top: 15px;
     font-size: 20px;
     color: #FF8C00;
     font-weight: bold;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
-#no-follow-wrap {
+.no-follow-back:hover {
+    color: #FF8C00;
+}
+
+.no-follow-wrap {
     margin: 50px 0 100px 0;
+}
+
+.profile-picture {
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 30px;
+  border-radius: 50%;
+  border: 1px #aa438c solid;
+  object-fit: cover;
+}
+
+.user-info-wrap {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    margin: 10px 0 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+  font-family: 'Source Code Pro', monospace;
+  color: #fff;
+  margin-right: 30px;
+}
+
+.followingBlock {
+  display: none;
+}
+
+.active {
+  color: #43aa8c;
+}
+
+#user-title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 35px;
+  color: #fff;
+  margin-top: 30px;
 }

@@ -19,7 +19,10 @@
                 <div>Followers: <span id="follower-num" th:text="${#lists.size(snippet.user.followers)}"></span></div>
                 <div>Following: <span id="following-num" th:text="${#lists.size(snippet.user.following)}"></span></div>
             </div>
-            <div>
+            <div class="d-flex justify-content-center">
+                <div>
+                    <a id="profile-btn" class="btn btn-success" th:href="@{'/user/profile/' + ${snippet.user.id}}">View Profile</a>
+                </div>
                 <button id="follow-click" class="btn btn-primary d-flex align-items-center disabled" sec:authorize="isAnonymous()">
                     <span>Follow</span>
                     <span class="material-symbols-outlined follow-icon">

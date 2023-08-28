@@ -54,7 +54,19 @@ public class UserController {
         model.addAttribute("followerNum", followerNum);
         model.addAttribute("followingNum", followingNum);
         model.addAttribute("user", user);
-        model.addAttribute("snippets", snippetService.findByUserId(user.getId(), page, model));
+        model.addAttribute("snippets", snippetService.findByUserId(user.getId(), false, page, model));
+    }
+
+    @GetMapping("/profile/{id}")
+    public String viewProfile(@PathVariable Long id, Integer page, Model model) {
+        User user = userService.findById(id);
+        int followerNum = user.getFollowers().size();
+        int followingNum = user.getFollowing().size();
+        model.addAttribute("followerNum", followerNum);
+        model.addAttribute("followingNum", followingNum);
+        model.addAttribute("user", user);
+        model.addAttribute("snippets", snippetService.findByUserId(user.getId(), true, page, model));
+        return "user/view";
     }
 
     @PostMapping("/register")
@@ -84,12 +96,17 @@ public class UserController {
     }
 
     @GetMapping("/followers/{id}")
-    public String followers(@PathVariable Long id, Model model) {
+    public String followers(@RequestParam(name = "list", required = false) String listType, @PathVariable Long id, Model model) {
         User user = userService.findById(id);
         List<User> followers = user.getFollowers();
         List<User> following = user.getFollowing();
+        if(listType == null || listType.isEmpty()) {
+            listType = "following";
+        }
+        model.addAttribute("user", user);
         model.addAttribute("followers", followers);
         model.addAttribute("following", following);
+        model.addAttribute("list", listType);
         return "user/followers";
     }
 

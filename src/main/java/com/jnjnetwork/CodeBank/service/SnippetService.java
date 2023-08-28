@@ -13,7 +13,7 @@ public interface SnippetService {
     void deleteById(Long id);
     List<Snippet> findAll();
     List<Snippet> findPublic(String sort, Integer page, Model model);
-    List<Snippet> findByUserId(Long id, Integer page, Model model);
+    List<Snippet> findByUserId(Long id, Boolean isPublic, Integer page, Model model);
     Snippet findById(Long id);
     long countPublicSnippets(Boolean isPublic);
 }
