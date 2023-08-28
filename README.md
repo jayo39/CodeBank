@@ -19,5 +19,5 @@ CodeBank is a web platform designed for users to share, store, and discover code
 
 ## Contact Information
 
-- Email: sjeaho@gmail
+- Email: sjeaho@gmail.com
 - Discord: @jayo39
