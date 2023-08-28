@@ -18,7 +18,13 @@
                 </span>
                 <div id="login">
                     <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
-                    <span sec:authorize="isAuthenticated()">Welcome, <a th:with="user=${#authentication.principal.user}" th:href="@{/user/profile}" th:text="${user.name}"></a></span>
+                    <div class="d-flex align-items-center" sec:authorize="isAuthenticated()">
+                        <div id="welcome">Welcome,</div>
+                        <a th:with="user=${#authentication.principal.user}" th:href="@{/user/profile}" th:text="${user.name}"></a>
+                        <span id="todo" class="material-symbols-outlined">
+                            checklist
+                        </span>
+                    </div>
                 </div>
             </nav>
         </div>

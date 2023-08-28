@@ -26,7 +26,7 @@ header {
     font-size: 20px;
 }
 
-#login span {
+#login > *:nth-child(n) {
     color: #fff;
 }
 
@@ -60,4 +60,13 @@ header {
 
 .header-nav:hover {
     color: #43aa8c;
+}
+
+#todo {
+    margin-left: 7px;
+    font-size: 25px;
+}
+
+#welcome {
+    margin-right: 5px;
 }
