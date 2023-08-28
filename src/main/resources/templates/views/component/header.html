@@ -8,7 +8,6 @@
                     <a class="header-nav" href="/">Home</a>
                     <a class="header-nav" href="/list">Public Snippets</a>
                     <a class="header-nav" href="/user/profile">My Snippets</a>
-                    <a class="header-nav">TODOs</a>
                     <a class="header-nav" sec:authorize="isAuthenticated()" href="/user/logout">Logout</a>
                 </div>
             </div>
@@ -21,7 +20,7 @@
                     <div class="d-flex align-items-center" sec:authorize="isAuthenticated()">
                         <div id="welcome">Welcome,</div>
                         <a th:with="user=${#authentication.principal.user}" th:href="@{/user/profile}" th:text="${user.name}"></a>
-                        <span id="todo" class="material-symbols-outlined">
+                        <span id="todo_alert" class="material-symbols-outlined">
                             checklist
                         </span>
                     </div>

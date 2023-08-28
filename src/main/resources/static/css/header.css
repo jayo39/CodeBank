@@ -26,10 +26,6 @@ header {
     font-size: 20px;
 }
 
-#login > *:nth-child(n) {
-    color: #fff;
-}
-
 #login a:hover {
     color: #43aa8c;
 }
@@ -62,11 +58,12 @@ header {
     color: #43aa8c;
 }
 
-#todo {
+#todo_alert {
     margin-left: 7px;
     font-size: 25px;
 }
 
 #welcome {
     margin-right: 5px;
+    color: #fff;
 }
