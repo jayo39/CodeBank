@@ -1,5 +1,6 @@
 package com.jnjnetwork.CodeBank.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,5 +16,6 @@ public class Todo extends CreatedTimeEntity{
     private String content;
     @ManyToOne
     @ToString.Exclude
+    @JsonIgnore
     private User user;
 }

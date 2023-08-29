@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.ToDoubleFunction;
 
 @Controller
 public class IndexController {
@@ -27,8 +28,6 @@ public class IndexController {
     SnippetService snippetService;
     @Autowired
     UpvoteService upvoteService;
-    @Autowired
-    TodoService todoService;
 
     @GetMapping("/")
     public String home(Model model) {

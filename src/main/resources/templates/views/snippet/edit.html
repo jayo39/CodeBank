@@ -12,10 +12,12 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/add.css" rel="stylesheet">
+    <link href="/css/todoSidebar.css" rel="stylesheet">
     <title>CodeBank</title>
 </head>
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
+<th:block th:insert="~{component/todoSidebar.html::todoSidebar}"></th:block>
 
 <div class="container mt-5">
     <form th:action="@{/snippet/editOk}" method="post" enctype="multipart/form-data">

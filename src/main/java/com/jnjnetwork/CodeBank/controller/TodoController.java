@@ -24,8 +24,7 @@ public class TodoController {
     TodoService todoService;
 
     @GetMapping("/list")
-    public List<Todo> list(Long user_id) {
-        System.out.println(todoService.findTodoById(user_id)); // TODO delete this later
+    public List<Todo> list(@RequestParam("user_id") Long user_id) {
         return todoService.findTodoById(user_id);
     }
 

@@ -8,6 +8,7 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/followers.css" rel="stylesheet">
+    <link href="/css/todoSidebar.css" rel="stylesheet">
     <title>CodeBank</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
     var listType = [[${list}]];
 </script>
 <th:block th:insert="~{component/header.html::header}"></th:block>
+<th:block th:insert="~{component/todoSidebar.html::todoSidebar}"></th:block>
 <div id="wrap">
     <div class="d-flex justify-content-center" id="user-title">[[${user.name}]]'s</div>
     <div class="d-flex justify-content-evenly">

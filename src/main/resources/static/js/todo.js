@@ -1,19 +1,7 @@
 $(function() {
     const sidebar = $('#sidebar');
     const openSidebar = $('#todo_alert');
-    const closeSidebar = $('#closeSidebar')
-
-    $('#todo_alert').css({'color': "#ffffff"});
-
-    $('#todo_alert').animate({'color': "#FF8C00"}, 1050).promise()
-        .then(function() {
-            loopAlert();
-        });
-
-    function loopAlert() {
-        $('#todo_alert').animate({'color': "#ffffff"}, 1050);
-        $('#todo_alert').animate({'color': "#FF8C00"}, 1050, loopAlert);
-    }
+    const closeSidebar = $('#closeSidebar');
 
     openSidebar.click(function() {
         loadTodo();
@@ -25,20 +13,31 @@ $(function() {
     });
 
     $("#add-btn").click(function() {
-
-    });
-
-    $("[data-todo-id]").click(function() {
-        const todo_id = $(this).attr("data-todo-id");
+        const content = $('#todo-content').val().trim();
+        if(!content) {
+            $('#todo-content').focus();
+            return;
+        }
+        const data = {
+            "content": content
+        };
         $.ajax({
-            url: "/todo/delete",
+            url: "/todo/add",
             type: "POST",
+            data: data,
             cache: false,
-            data: {"id": todo_id},
             success: function(data, status, xhr) {
                 loadTodo();
+                $('#todo-content').val('');
             }
         });
+    });
+
+    $('#todo-content').on("input", function() {
+        var maxLength = 25;
+        if ($(this).val().length > maxLength) {
+          $(this).val($(this).val().substring(0, maxLength));
+        }
     });
 });
 
@@ -49,27 +48,52 @@ function loadTodo() {
         cache: false,
         success: function(data, status, xhr) {
             buildTodo(data);
+            listenDelete(data);
         }
     });
 }
 
 function buildTodo(result) {
-    result.data.forEach(todo => {
+    const out = [];
+    result.forEach(todo => {
         let id = todo.id;
         let content = todo.content;
         let regDate = todo.regDate;
         const row = `
-                <div class="d-flex align-items-center todo-start">
+        <div id="todo-${id}" class="d-flex align-items-center justify-content-between">
+            <div>
+                <div class="todo-start">
                   <div>${content}</div>
-                  <div class="form-check form-switch">
-                    <input data-todo-id="${id}" class="form-check-input" type="checkbox">
-                  </div>
                 </div>
                 <div class="d-flex justify-content-start">
                   <div class="todo-date">${regDate}</div>
                 </div>
+            </div>
+            <div class="form-check form-switch">
+                <input data-todo-id="${id}" class="form-check-input" type="checkbox">
+            </div>
+        </div>
         `;
         out.push(row);
-        $('#todo-list').html(out.join("\n"));
+    });
+    $('#todo-list').html(out.join("\n"));
+}
+
+function listenDelete(result) {
+    $("[data-todo-id]").click(function() {
+        const todo_id = $(this).attr("data-todo-id");
+        $('#todo-' + todo_id).css('text-decoration', 'line-through');
+        setTimeout(function() {
+            $.ajax({
+                url: "/todo/delete",
+                type: "POST",
+                cache: false,
+                data: {"id": todo_id},
+                success: function(data, status, xhr) {
+                    loadTodo();
+                }
+            });
+        }, 150);
+        console.log(result.length);
     });
 }
