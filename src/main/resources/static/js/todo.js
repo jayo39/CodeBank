@@ -16,11 +16,60 @@ $(function() {
     }
 
     openSidebar.click(function() {
-      sidebar.css('right', '0');
+        loadTodo();
+        sidebar.css('right', '0');
     });
 
     closeSidebar.click(function() {
-      sidebar.css('right', '-350px');
+        sidebar.css('right', '-350px');
     });
 
+    $("#add-btn").click(function() {
+
+    });
+
+    $("[data-todo-id]").click(function() {
+        const todo_id = $(this).attr("data-todo-id");
+        $.ajax({
+            url: "/todo/delete",
+            type: "POST",
+            cache: false,
+            data: {"id": todo_id},
+            success: function(data, status, xhr) {
+                loadTodo();
+            }
+        });
+    });
 });
+
+function loadTodo() {
+    $.ajax({
+        url: "/todo/list?user_id=" + todoUser_id,
+        type: "GET",
+        cache: false,
+        success: function(data, status, xhr) {
+            buildTodo(data);
+        }
+    });
+}
+
+function buildTodo(result) {
+    result.data.forEach(todo => {
+        let id = todo.id;
+        let content = todo.content;
+        let regDate = todo.regDate;
+        const row = `
+                <div class="d-flex align-items-center todo-start">
+                  <div>${content}</div>
+                  <div class="form-check form-switch">
+                    <input data-todo-id="${id}" class="form-check-input" type="checkbox">
+                  </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                  <div class="todo-date">${regDate}</div>
+                </div>
+        `;
+        out.push(row);
+        $('#todo-list').html(out.join("\n"));
+    });
+}
