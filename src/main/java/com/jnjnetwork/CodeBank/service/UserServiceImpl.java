@@ -103,6 +103,13 @@ public class UserServiceImpl implements UserService{
                 return 0;
             }
         }
+        if (!user.getP_img().isEmpty()) {
+            String deleteFilePath = uploadDir + File.separator + user.getP_img();
+            File deleteFile = new File(deleteFilePath);
+            if (deleteFile.exists()) {
+                deleteFile.delete();
+            }
+        }
         String sourceName = StringUtils.cleanPath(originalFileName);
         String fileName = sourceName;
         File file1 = new File(uploadDir + File.separator + sourceName);
