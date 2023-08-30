@@ -40,27 +40,27 @@
                     </span>
                 </button>
                 <div id="follow-buttons" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
-                    <button class="follow-btn btn btn-primary d-flex align-items-center disabled" th:if="${snippet.user.id == logged_user.id}">
+                    <button class="follow-btn btn btn-primary d-flex align-items-center disabled" th:if="${user.id == logged_user.id}">
                         <span>Follow</span>
                         <span class="material-symbols-outlined follow-icon">
                             person_check
                         </span>
                     </button>
-                    <button class="follow-btn follow-click btn btn-primary d-flex align-items-center" th:if="${(snippet.user.id != logged_user.id) && (not #lists.contains(followerIdList, logged_user.id))}">
+                    <button class="follow-btn follow-click btn btn-primary d-flex align-items-center" th:if="${(user.id != logged_user.id) && (not #lists.contains(followerIdList, logged_user.id))}">
                         <span>Follow</span>
                         <span class="material-symbols-outlined follow-icon">
                             person_check
                         </span>
                         <input class="logged_user" type="hidden" th:value="${logged_user.id}">
-                        <input class="post_user" type="hidden" th:value="${snippet.user.id}">
+                        <input class="post_user" type="hidden" th:value="${user.id}">
                     </button>
-                    <button class="follow-btn follow-click btn btn-danger d-flex align-items-center" th:if="${(snippet.user.id != logged_user.id) && (#lists.contains(followerIdList, logged_user.id))}">
+                    <button class="follow-btn follow-click btn btn-danger d-flex align-items-center" th:if="${(user.id != logged_user.id) && (#lists.contains(followerIdList, logged_user.id))}">
                         <span>Unfollow</span>
                         <span class="material-symbols-outlined follow-icon">
                             person_remove
                         </span>
                         <input class="logged_user" type="hidden" th:value="${logged_user.id}">
-                        <input class="post_user" type="hidden" th:value="${snippet.user.id}">
+                        <input class="post_user" type="hidden" th:value="${user.id}">
                     </button>
                 </div>
             </div>
@@ -121,4 +121,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="/js/todo.js"></script>
+<script src="/js/view.js"></script>
 </html>

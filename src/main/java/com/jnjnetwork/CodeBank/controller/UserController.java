@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,9 +62,18 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String viewProfile(@PathVariable Long id, Integer page, Model model) {
+        User logged_user = U.getLoggedUser();
         User user = userService.findById(id);
         int followerNum = user.getFollowers().size();
         int followingNum = user.getFollowing().size();
+        List<Long> followerIdList = new ArrayList<>();
+        if(logged_user != null && logged_user.getId() == user.getId()) {
+            return "redirect:/user/profile";
+        }
+        for(var u : user.getFollowers()) {
+            followerIdList.add(u.getId());
+        }
+        model.addAttribute("followerIdList", followerIdList);
         model.addAttribute("followerNum", followerNum);
         model.addAttribute("followingNum", followingNum);
         model.addAttribute("user", user);
