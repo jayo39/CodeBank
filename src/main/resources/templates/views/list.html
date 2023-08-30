@@ -69,7 +69,7 @@
     </div>
 </div>
 <div th:if="${not #lists.isEmpty(snippets)}" th:each="snippet : ${snippets}">
-    <a th:href="@{'/snippet/detail/' + ${snippet.id}}" class="snippet-box">
+    <div class="snippet-box">
         <div class="snippet-flex">
             <div th:class="'likecontainer_' + ${snippet.id} + ' ' + ${#arrays.contains(likedPosts, snippet.id) ? 'liked' : 'not-liked'} + ' ' + 'like-box'">
                 <div>
@@ -84,18 +84,18 @@
                 <img th:unless="${snippet.img}" th:src="@{/image/default_post.png}" alt="Snippet" class="snippet-image">
                 <img th:if="${snippet.img}" th:src="@{'/upload/' + ${snippet.img}}" alt="Snippet" class="snippet-image">
             </div>
-            <div class="snippet-desc-box">
+            <a class="snippet-desc-box" th:href="@{'/snippet/detail/' + ${snippet.id}}">
                 <div class="badge badge-pill" th:text="${snippet.language}"></div>
                 <div class="snippet-title" th:text="${snippet.title}"></div>
                 <div class="snippet-description" th:text="${snippet.description}"></div>
-            </div>
+            </a>
         </div>
         <div class="credit">
             <div th:text="'Posted by: ' + ${snippet.user.name}"></div>
             <div><img th:unless="${snippet.user.p_img}" th:src="@{/image/default_profile.png}" class="profileimg"></div>
             <div><img th:if="${snippet.user.p_img}" th:src="@{'/upload/' + ${snippet.user.p_img}}" class="profileimg"></div>
         </div>
-    </a>
+    </div>
 </div>
 
 <th:block th:insert="~{component/pagination.html::pagination}"></th:block>

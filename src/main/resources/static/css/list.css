@@ -109,6 +109,7 @@ hr {
 .like-box {
     margin: 0 16px 0 2px;
     text-align: center;
+    z-index: 5;
 }
 
 .not-liked {
