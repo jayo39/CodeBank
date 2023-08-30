@@ -28,10 +28,13 @@ public class IndexController {
     SnippetService snippetService;
     @Autowired
     UpvoteService upvoteService;
+    @Autowired
+    TodoService todoService;
 
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("userTotal", userService.countUserTotal());
+        model.addAttribute("todoTotal", todoService.countTodoTotal());
         model.addAttribute("snippetTotal", snippetService.countPublicSnippets(true));
         return "/index";
     }

@@ -32,4 +32,9 @@ public class TodoServiceImpl implements TodoService{
         Sort sort = Sort.by(Sort.Order.desc("regDate"));
         return todoRepository.findByUserId(user_id, sort);
     }
+
+    @Override
+    public long countTodoTotal() {
+        return todoRepository.count();
+    }
 }

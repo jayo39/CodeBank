@@ -9,4 +9,5 @@ public interface TodoService {
     void add(Todo todo);
     void deleteById(Long id);
     List<Todo> findTodoById(Long user_id);
+    long countTodoTotal();
 }
