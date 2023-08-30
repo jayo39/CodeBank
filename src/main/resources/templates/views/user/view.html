@@ -17,6 +17,11 @@
 <body>
 <th:block th:insert="~{component/header.html::header}"></th:block>
 <th:block th:insert="~{component/todoSidebar.html::todoSidebar}"></th:block>
+<script th:inline="javascript" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
+    var current_userId = [[${logged_user.id}]];
+    var snippet_userId = [[${user.id}]];
+    var followerNum = [[${followerNum}]];
+</script>
 <div id="first-container">
     <div class="profile-container">
         <div id="profile-image">
@@ -27,7 +32,7 @@
         <div id="profile-info" class="d-flex flex-column align-items-center">
             <div class="profile-name" th:text="${user.name}"></div>
             <div class="profile-bio">
-                <a class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
+                <a id="followers-num" class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
             </div>
             <div class="profile-bio">
                 <a class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=following'}">Following: [[${followingNum}]]</a>
