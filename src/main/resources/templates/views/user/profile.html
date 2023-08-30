@@ -36,18 +36,10 @@
         <div id="profile-info">
             <div class="profile-name" th:text="${user.name}"></div>
             <div class="profile-bio">
-                <a th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
+                <a class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
             </div>
             <div class="profile-bio">
-                <a th:href="@{'/user/followers/' + ${user.id} + '?list=following'}">Following: [[${followingNum}]]</a>
-            </div>
-            <div>
-                <button class="follow-btn btn btn-primary d-flex align-items-center">
-                    <span>Follow</span>
-                    <span class="material-symbols-outlined follow-icon">
-                        person_check
-                    </span>
-                </button>
+                <a class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=following'}">Following: [[${followingNum}]]</a>
             </div>
         </div>
     </div>

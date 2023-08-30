@@ -235,3 +235,12 @@ h2 {
     margin-left: 5px;
     font-size: 20px;
 }
+
+.follow-click {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.follow-click:hover {
+    color: #43aa8c;
+}
