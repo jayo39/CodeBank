@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,24 +20,49 @@
 <div id="first-container">
     <div class="profile-container">
         <div id="profile-image">
-            <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+            <img th:unless="${user.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
+            <img th:if="${user.p_img}" th:src="@{'/upload/' + ${user.p_img}}" alt="Profile Picture" class="profile-picture">
             <div class="profile-bio" th:text="${user.email}"></div>
         </div>
         <div id="profile-info" class="d-flex flex-column align-items-center">
             <div class="profile-name" th:text="${user.name}"></div>
             <div class="profile-bio">
-                <a th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
+                <a class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=followers'}">Followers: [[${followerNum}]]</a>
             </div>
             <div class="profile-bio">
-                <a th:href="@{'/user/followers/' + ${user.id} + '?list=following'}">Following: [[${followingNum}]]</a>
+                <a class="follow-click" th:href="@{'/user/followers/' + ${user.id} + '?list=following'}">Following: [[${followingNum}]]</a>
             </div>
             <div>
-                <button class="follow-btn btn btn-primary d-flex align-items-center">
+                <button id="follow-click" class="follow-btn btn btn-primary d-flex align-items-center disabled" sec:authorize="isAnonymous()">
                     <span>Follow</span>
                     <span class="material-symbols-outlined follow-icon">
                         person_check
                     </span>
                 </button>
+                <div id="follow-buttons" sec:authorize="isAuthenticated()" th:with="logged_user=${#authentication.principal.user}">
+                    <button class="follow-btn btn btn-primary d-flex align-items-center disabled" th:if="${snippet.user.id == logged_user.id}">
+                        <span>Follow</span>
+                        <span class="material-symbols-outlined follow-icon">
+                            person_check
+                        </span>
+                    </button>
+                    <button class="follow-btn follow-click btn btn-primary d-flex align-items-center" th:if="${(snippet.user.id != logged_user.id) && (not #lists.contains(followerIdList, logged_user.id))}">
+                        <span>Follow</span>
+                        <span class="material-symbols-outlined follow-icon">
+                            person_check
+                        </span>
+                        <input class="logged_user" type="hidden" th:value="${logged_user.id}">
+                        <input class="post_user" type="hidden" th:value="${snippet.user.id}">
+                    </button>
+                    <button class="follow-btn follow-click btn btn-danger d-flex align-items-center" th:if="${(snippet.user.id != logged_user.id) && (#lists.contains(followerIdList, logged_user.id))}">
+                        <span>Unfollow</span>
+                        <span class="material-symbols-outlined follow-icon">
+                            person_remove
+                        </span>
+                        <input class="logged_user" type="hidden" th:value="${logged_user.id}">
+                        <input class="post_user" type="hidden" th:value="${snippet.user.id}">
+                    </button>
+                </div>
             </div>
         </div>
     </div>
