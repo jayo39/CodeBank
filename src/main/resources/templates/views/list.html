@@ -93,7 +93,7 @@
         <div class="credit">
             <div th:text="'Posted by: ' + ${snippet.user.name}"></div>
             <div><img th:unless="${snippet.user.p_img}" th:src="@{/image/default_profile.png}" class="profileimg"></div>
-            <div><img th:if="${snippet.user.p_img}" th:src="@{'/upload/' + $(snippet.user.p_img)}" class="profileimg"></div>
+            <div><img th:if="${snippet.user.p_img}" th:src="@{'/upload/' + ${snippet.user.p_img}}" class="profileimg"></div>
         </div>
     </a>
 </div>

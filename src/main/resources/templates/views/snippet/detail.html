@@ -31,8 +31,8 @@
     </div>
     <div id="post-credit">
         <div id="profilename">Posted by <a id="clickname" onclick="openModal()" th:text="${snippet.user.name}"></a></div>
-        <img th:unless="${user.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
-        <img th:if="${user.p_img}" th:src="@{'/upload/' + ${user.p_img}}" alt="Profile Picture" class="profile-picture">
+        <img id="profileimg" th:unless="${snippet.user.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture">
+        <img id="profileimg" th:if="${snippet.user.p_img}" th:src="@{'/upload/' + ${snippet.user.p_img}}" alt="Profile Picture">
     </div>
 </div>
 <div id="description" th:text="${snippet.description}"></div>

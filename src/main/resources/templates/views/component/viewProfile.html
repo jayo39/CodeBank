@@ -11,7 +11,8 @@
         <div class="d-flex justify-content-center flex-column align-items-center modal-content">
             <div id="image-wrap">
                 <div id="click-profile">
-                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
+                    <img th:unless="${snippet.user.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
+                    <img th:if="${snippet.user.p_img}" th:src="@{'/upload/' + ${snippet.user.p_img}}" alt="Profile Picture" class="profile-picture">
                 </div>
             </div>
             <div id="profile-info">

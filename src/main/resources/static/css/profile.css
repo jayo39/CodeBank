@@ -216,7 +216,8 @@ h2 {
 
 #upload-info {
   position: absolute;
-  margin: -91px 0 0 25px;
+  margin: -93px 0 0 25px;
+  text-align: center;
   opacity: 0;
   transition: opacity 0.3s, transform 0.3s;
 }

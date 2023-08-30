@@ -75,12 +75,14 @@ hr {
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     background-color: rgba(255, 255, 255, 0.1);
+    width: 450px;
 }
 
 .user-info {
   font-family: 'Source Code Pro', monospace;
   color: #fff;
   margin-right: 30px;
+  min-width: 230px;
 }
 
 .followingBlock {

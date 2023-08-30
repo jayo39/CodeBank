@@ -45,12 +45,14 @@
         <div class="d-flex justify-content-center flex-column align-items-center">
             <div th:each="follower : ${followers}" class="user-info-wrap">
                 <div class="d-flex align-items-center">
-                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
-                    <div class="user-info d-flex flex-column">
+                    <img th:unless="${follower.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
+                    <img th:if="${follower.p_img}" th:src="@{'/upload/' + ${follower.p_img}}" alt="Profile Picture" class="profile-picture">                    <div class="user-info d-flex flex-column">
                         <div th:text="${follower.name}"></div>
                         <div th:text="${follower.email}"></div>
                     </div>
-                    <button class="btn btn-outline-primary">Follow</button>
+                    <div>
+                        <a class="btn btn-outline-primary" th:href="@{'/user/profile/' + ${follower.id}}">Profile</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,12 +78,14 @@
         <div class="d-flex justify-content-center flex-column align-items-center">
             <div th:each="follower : ${following}" class="user-info-wrap">
                 <div class="d-flex align-items-center">
-                    <img src="/image/default_profile.png" alt="Profile Picture" class="profile-picture">
-                    <div class="user-info d-flex flex-column">
+                    <img th:unless="${follower.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
+                    <img th:if="${follower.p_img}" th:src="@{'/upload/' + ${follower.p_img}}" alt="Profile Picture" class="profile-picture">                    <div class="user-info d-flex flex-column">
                         <div th:text="${follower.name}"></div>
                         <div th:text="${follower.email}"></div>
                     </div>
-                    <button class="btn btn-outline-primary">Follow</button>
+                    <div>
+                        <a class="btn btn-outline-primary" th:href="@{'/user/profile/' + ${follower.id}}">Profile</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@
 <th:block th:insert="~{component/todoSidebar.html::todoSidebar}"></th:block>
 <div id="first-container">
     <div class="profile-container">
-        <div id="profile-image">
+        <div id="profile-image" class="d-flex justify-content-center align-items-center flex-column">
             <form id="profilePicture" th:action="@{/user/save}" method="POST" enctype="multipart/form-data">
                 <input id="user-id" type="hidden" th:value="${user.id}" name="user_id">
                 <input id="profile-upload" type="file" name="upfile">
