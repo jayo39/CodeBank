@@ -12,7 +12,7 @@ public interface SnippetService {
     int save(Snippet snippet, MultipartFile file);
     void deleteById(Long id);
     List<Snippet> findAll();
-    List<Snippet> findPublic(String sort, Integer page, Model model);
+    List<Snippet> findPublic(List<Long> following_users, String sort, Integer page, Model model);
     List<Snippet> findByUserId(Long id, Boolean isPublic, Integer page, Model model);
     Snippet findById(Long id);
     long countPublicSnippets(Boolean isPublic);

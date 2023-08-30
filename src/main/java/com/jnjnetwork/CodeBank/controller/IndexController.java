@@ -43,11 +43,18 @@ public class IndexController {
     public void list(@ModelAttribute("sort") String sortMethod, Integer page, Model model) {
         User user = U.getLoggedUser();
         List<Long> list = new ArrayList<>();
+        List<Long> following_userId = new ArrayList<>();
         List<Upvote> likedPosts = upvoteService.getLikedPosts(user);
+        if (user != null ) {
+            List<User> following_users = userService.findById(user.getId()).getFollowing();
+            for(User following : following_users) {
+                following_userId.add(following.getId());
+            }
+        }
         for(Upvote post : likedPosts) {
             list.add(post.getSnippet().getId());
         }
-        model.addAttribute("snippets", snippetService.findPublic(sortMethod, page, model));
+        model.addAttribute("snippets", snippetService.findPublic(following_userId, sortMethod, page, model));
         model.addAttribute("sort", sortMethod);
         model.addAttribute("user", user);
         model.addAttribute("likedPosts", list);

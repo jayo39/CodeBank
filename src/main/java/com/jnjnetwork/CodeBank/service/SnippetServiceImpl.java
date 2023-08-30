@@ -62,8 +62,9 @@ public class SnippetServiceImpl implements SnippetService{
     }
 
     @Override
-    public List<Snippet> findPublic(String sortMethod, Integer page, Model model) {
+    public List<Snippet> findPublic(List<Long> following_users, String sortMethod, Integer page, Model model) {
         Sort sort;
+        Page<Snippet> pageWrites;
         // default page is 1
         if(page == null) page = 1;
         if(page < 1) page = 1;
@@ -80,19 +81,19 @@ public class SnippetServiceImpl implements SnippetService{
             sort = Sort.by(
                     Sort.Order.desc("regDate")
             );
+            pageWrites = snippetRepository.findByIsPublic(true, PageRequest.of(page - 1, pageRows, sort));
         } else if ("following".equals(sortMethod)) {
             sort = Sort.by(
-                    // TODO
                     Sort.Order.desc("regDate")
             );
+            pageWrites = snippetRepository.findByUserIdInAndIsPublic(following_users, true, PageRequest.of(page - 1, pageRows, sort));
         } else {
             sort = Sort.by(
                     Sort.Order.desc("likeCount"),
                     Sort.Order.desc("regDate")
             );
+            pageWrites = snippetRepository.findByIsPublic(true, PageRequest.of(page - 1, pageRows, sort));
         }
-
-        Page<Snippet> pageWrites = snippetRepository.findByIsPublic(true, PageRequest.of(page - 1, pageRows, sort));
 
         long cnt = pageWrites.getTotalElements();
         int totalPage =  pageWrites.getTotalPages();
