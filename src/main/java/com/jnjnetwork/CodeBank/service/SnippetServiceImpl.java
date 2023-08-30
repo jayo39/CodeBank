@@ -172,7 +172,7 @@ public class SnippetServiceImpl implements SnippetService{
 
     private int upload(Snippet snippet, MultipartFile file) {
         String originalFileName = file.getOriginalFilename();
-        if(originalFileName == null || originalFileName.length() == 0) {
+        if(originalFileName == null || originalFileName.isEmpty()) {
             try {
                 snippet.setImg(null);
                 snippetRepository.save(snippet);

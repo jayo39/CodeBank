@@ -1,6 +1,7 @@
 $(function() {
     var profileUpload = $('#profile-upload');
     var profileClick = $('#image-wrap');
+    const user_id = $('#user-id').val().trim();
     $(".snippet-description").each(function() {
         if ($(this).text().length > 60) {
             $(this).text($(this).text().substring(0, 60) + "..")
@@ -9,6 +10,10 @@ $(function() {
     profileClick.on("click", function(event) {
         event.preventDefault();
         profileUpload.click();
+    });
+
+    profileUpload.on('change', function() {
+        $('#profilePicture').submit();
     });
 
     profileClick.hover(

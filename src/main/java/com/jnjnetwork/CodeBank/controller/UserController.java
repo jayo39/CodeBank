@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -47,7 +48,8 @@ public class UserController {
 
     @GetMapping("/profile")
     public void profile(Integer page, Model model) {
-        User user = U.getLoggedUser();
+        User loggedUser = U.getLoggedUser();
+        User user = userService.findById(loggedUser.getId());
         User profileUser = userService.findById(user.getId());
         int followerNum = profileUser.getFollowers().size();
         int followingNum = profileUser.getFollowing().size();
@@ -67,6 +69,14 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("snippets", snippetService.findByUserId(user.getId(), true, page, model));
         return "user/view";
+    }
+
+    @PostMapping("/save")
+    @Transactional
+    public String saveOk(@RequestParam("upfile") MultipartFile file, @RequestParam("user_id") Long user_id) {
+        User user = userService.findById(user_id);
+        userService.save(user, file);
+        return "redirect:/user/profile";
     }
 
     @PostMapping("/register")
