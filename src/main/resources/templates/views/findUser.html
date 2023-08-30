@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet">
+    <link href="/css/followers.css" rel="stylesheet">
+    <link href="/css/todoSidebar.css" rel="stylesheet">
+    <title>CodeBank</title>
+</head>
+<body>
+<th:block th:insert="~{component/header.html::header}"></th:block>
+<th:block th:insert="~{component/todoSidebar.html::todoSidebar}"></th:block>
+<div id="wrap">
+    <div class="d-flex justify-content-center" id="dev-title">Check out other developers!</div>
+    <div class="no-follow-wrap followersBlock" th:if="${#lists.isEmpty(users)}">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div>
+            <span class="no-follow material-symbols-outlined">
+                person_cancel
+            </span>
+            </div>
+            <div>
+                <div class="no-follow-title">No users could be found</div>
+            </div>
+            <div>
+                <a class="no-follow-back" href="/">Back to home</a>
+            </div>
+        </div>
+    </div>
+    <div class="follow-wrap followersBlock" th:if="${not #lists.isEmpty(users)}">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div th:each="user : ${users}" class="user-info-wrap">
+                <div class="d-flex align-items-center">
+                    <img th:unless="${user.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
+                    <img th:if="${user.p_img}" th:src="@{'/upload/' + ${user.p_img}}" alt="Profile Picture" class="profile-picture">                    <div class="user-info d-flex flex-column">
+                    <div th:text="${user.name}"></div>
+                    <div th:text="${user.email}"></div>
+                </div>
+                    <div>
+                        <a class="btn btn-outline-primary" th:href="@{'/user/profile/' + ${user.id}}">Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{component/footer.html::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="/js/todo.js"></script>
+</html>

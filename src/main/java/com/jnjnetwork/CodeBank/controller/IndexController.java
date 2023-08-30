@@ -58,4 +58,10 @@ public class IndexController {
         attr.addFlashAttribute("sort", sortMethod);
         return "redirect:/list";
     }
+
+    @GetMapping("/users")
+    public String users(Model model) {
+        model.addAttribute("users", userService.findAllUsers());
+        return "/findUser";
+    }
 }

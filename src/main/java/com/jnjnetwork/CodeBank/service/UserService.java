@@ -16,4 +16,5 @@ public interface UserService {
     User findById(Long id);
     void save(User user);
     int save(User user, MultipartFile file);
+    List<User> findAllUsers();
 }

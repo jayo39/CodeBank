@@ -7,6 +7,7 @@ import com.jnjnetwork.CodeBank.repository.RoleRepository;
 import com.jnjnetwork.CodeBank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -92,6 +93,15 @@ public class UserServiceImpl implements UserService{
     public int save(User user, MultipartFile file) {
         return upload(user, file);
     }
+
+    @Override
+    public List<User> findAllUsers() {
+        Sort sort = Sort.by(
+                Sort.Order.desc("name")
+        );
+        return userRepository.findAll(sort);
+    }
+
     private int upload(User user, MultipartFile file) {
         String originalFileName = file.getOriginalFilename();
         if(originalFileName == null || originalFileName.isEmpty()) {
