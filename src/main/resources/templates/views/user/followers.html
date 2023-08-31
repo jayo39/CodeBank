@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="follow-wrap followersBlock" th:if="${not #lists.isEmpty(followers)}">
-        <div class="d-flex justify-content-center flex-column align-items-center">
+        <div class="scrollable d-flex flex-column align-items-center justify-content-start">
             <div th:each="follower : ${followers}" class="user-info-wrap">
                 <div class="d-flex align-items-center">
                     <img th:unless="${follower.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
@@ -75,7 +75,7 @@
         </div>
     </div>
     <div class="follow-wrap followingBlock" th:if="${not #lists.isEmpty(following)}">
-        <div class="d-flex justify-content-center flex-column align-items-center">
+        <div class="scrollable d-flex flex-column align-items-center justify-content-start">
             <div th:each="follower : ${following}" class="user-info-wrap">
                 <div class="d-flex align-items-center">
                     <img th:unless="${follower.p_img}" th:src="@{/image/default_profile.png}" alt="Profile Picture" class="profile-picture">
