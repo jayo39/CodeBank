@@ -67,8 +67,8 @@ public class IndexController {
     }
 
     @GetMapping("/users")
-    public String users(Model model) {
-        model.addAttribute("users", userService.findAllUsers());
+    public String users(Integer page, Model model) {
+        model.addAttribute("users", userService.findAllUsers(page, model));
         return "/findUser";
     }
 }

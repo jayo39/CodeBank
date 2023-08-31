@@ -3,6 +3,7 @@ package com.jnjnetwork.CodeBank.service;
 import com.jnjnetwork.CodeBank.domain.Role;
 import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.domain.User;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface UserService {
     User findById(Long id);
     void save(User user);
     int save(User user, MultipartFile file);
-    List<User> findAllUsers();
+    List<User> findAllUsers(Integer page, Model model);
 }

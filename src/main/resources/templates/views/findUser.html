@@ -8,6 +8,7 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/followers.css" rel="stylesheet">
+    <link href="/css/pagination.css" rel="stylesheet">
     <link href="/css/todoSidebar.css" rel="stylesheet">
     <title>CodeBank</title>
 </head>
@@ -48,6 +49,7 @@
         </div>
     </div>
 </div>
+<th:block th:insert="~{component/pagination.html::pagination}"></th:block>
 <th:block th:insert="~{component/footer.html::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

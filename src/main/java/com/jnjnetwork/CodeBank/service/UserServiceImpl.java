@@ -5,11 +5,16 @@ import com.jnjnetwork.CodeBank.domain.Snippet;
 import com.jnjnetwork.CodeBank.domain.User;
 import com.jnjnetwork.CodeBank.repository.RoleRepository;
 import com.jnjnetwork.CodeBank.repository.UserRepository;
+import com.jnjnetwork.CodeBank.util.U;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,6 +35,10 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    @Value("${app.pagination.profile_write_pages}")
+    private int PROFILE_WRITE_PAGES;
+    @Value("${app.pagination.profile_page_rows}")
+    private int PROFILE_PAGE_ROWS;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -95,11 +104,41 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> findAllUsers() {
-        Sort sort = Sort.by(
-                Sort.Order.desc("name")
-        );
-        return userRepository.findAll(sort);
+    public List<User> findAllUsers(Integer page, Model model) {
+        Sort sort = Sort.by(Sort.Order.desc("name"));
+        Page<User> pageWrites;
+        if(page == null) page = 1;
+        if(page < 1) page = 1;
+
+        HttpSession session = U.getSession();
+        Integer writePages = (Integer)session.getAttribute("writePages");
+        if(writePages == null) writePages = PROFILE_WRITE_PAGES;
+        Integer pageRows = (Integer)session.getAttribute("pageRows");
+        if(pageRows == null) pageRows = PROFILE_PAGE_ROWS;
+        session.setAttribute("page", page);
+
+        pageWrites = userRepository.findAll(PageRequest.of(page - 1, pageRows, sort));
+
+        long cnt = pageWrites.getTotalElements();
+        int totalPage =  pageWrites.getTotalPages();
+
+        if(page > totalPage) page = totalPage;
+        int fromRow = (page - 1) * pageRows;
+        int startPage = (((page - 1) / writePages) * writePages) + 1;
+        int endPage = startPage + writePages - 1;
+        if (endPage >= totalPage) endPage = totalPage;
+
+        model.addAttribute("cnt", cnt);
+        model.addAttribute("page", page);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("pageRows", pageRows);
+
+        model.addAttribute("url", U.getRequest().getRequestURI());
+        model.addAttribute("writePages", writePages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return pageWrites.getContent();
     }
 
     private int upload(User user, MultipartFile file) {
