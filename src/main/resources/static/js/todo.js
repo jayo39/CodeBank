@@ -49,9 +49,6 @@ function loadTodo() {
         success: function(data, status, xhr) {
             buildTodo(data);
             listenDelete(data);
-            if (data.length == 8) {
-                $('#add-btn').addClass('disabled');
-            }
         }
     });
 }
@@ -94,7 +91,6 @@ function listenDelete(result) {
                 data: {"id": todo_id},
                 success: function(data, status, xhr) {
                     loadTodo();
-                    $('#add-btn').removeClass('disabled');
                 }
             });
         }, 150);

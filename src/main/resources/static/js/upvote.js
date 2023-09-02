@@ -20,7 +20,6 @@ $(function() {
                 var likedStat = data.isUpvote;
                 var likeNum = data.likeCount;
 
-                // Change button color based on likedStatus
                 if (likedStat) {
                     likeContainer.each(function() {
                         $(this).removeClass('liked');
